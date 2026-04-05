@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skorlama - Leadrixa CRM</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="leads.css">
+    <link rel="stylesheet" href="skorlama.css">
+    
+    <style>
+        .page-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        .page-actions-right {
+            display: flex;
+            gap: 15px;
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--primary-color);
+            padding: 8px 16px;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-outline:hover {
+            background: #F1F3F5;
+        }
+        .btn-add {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 8px 16px;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3 13h4v8H3v-8zm6-6h4v14H9V7zm6-4h4v18h-4V3z" fill="#1A2238"/>
+                    </svg>
+                </div>
+                <h3>Leadrixa <span>CRM PLATFORM</span></h3>
+            </div>
+            
+            <ul class="sidebar-menu">
+                <li><a href="index.html"><i class="fa-solid fa-chart-pie"></i> Dashboard</a></li>
+                <li><a href="leadler.html"><i class="fa-solid fa-users"></i> Leadler</a></li>
+                <li><a href="skorlama.html" class="active"><i class="fa-solid fa-star-half-stroke"></i> Skorlama</a></li>
+                <li><a href="#"><i class="fa-regular fa-comments"></i> İletişim & Nurturing</a></li>
+                <li><a href="#"><i class="fa-solid fa-arrow-right-arrow-left"></i> Satış Pipeline</a></li>
+                <li><a href="#"><i class="fa-solid fa-check-double"></i> Görevler</a></li>
+                <li><a href="#"><i class="fa-solid fa-chart-line"></i> Raporlama</a></li>
+                <li><a href="genel_tanimlar.html"><i class="fa-solid fa-gear"></i> Genel Tanımlar</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Topbar (Arama kaldırıldı) -->
+            <header class="topbar">
+                <div class="mobile-menu-toggle" style="display:none; cursor:pointer; font-size:20px; color:var(--primary-color);">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+                <div class="topbar-actions" style="margin-left: auto;">
+                    <button class="btn-add"><i class="fa-solid fa-plus"></i> Yeni Lead</button>
+                    <div class="notification-icon">
+                        <i class="fa-regular fa-bell"></i>
+                        <span class="badge"></span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                
+                <div class="page-actions" style="align-items: flex-end;">
+                    <div class="page-title" style="margin-bottom:0;">
+                        <h1>Lead Skorlama</h1>
+                        <p>Davranışsal ve demografik puanlama</p>
+                    </div>
+                    <div class="page-actions-right">
+                        <button class="btn-outline" onclick="window.location.href='genel_tanimlar.html'">
+                            <i class="fa-solid fa-gear"></i> Parametreler
+                        </button>
+                        <button class="btn-add">
+                            <i class="fa-solid fa-rotate-right"></i> Tümünü Yeniden Skorla
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Data Table -->
+                <div class="table-card">
+                    <table id="scoringTable" class="display" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Lead</th>
+                                <th>Demografik</th>
+                                <th>Davranışsal</th>
+                                <th>Toplam Skor</th>
+                                <th>Sıcaklık</th>
+                                <th style="text-align: right;">Aksiyon</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Mock Data -->
+                            <tr>
+                                <td>
+                                    <div class="table-avatar-wrapper">
+                                        <div>
+                                            <strong>Mehmet Demir</strong>
+                                            <span class="table-subtext">FinTek</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="score-progress-wrapper">
+                                        <div class="score-progress-bg"><div class="score-progress-fill" style="width: 100%;"></div></div>
+                                        <div class="score-value-text">50</div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="score-progress-wrapper">
+                                        <div class="score-progress-bg"><div class="score-progress-fill" style="width: 94%;"></div></div>
+                                        <div class="score-value-text">47</div>
+                                    </div>
+                                </td>
+                                <td><div class="total-score-wrapper">97<span>/100</span></div></td>
+                                <td><span class="badge badge-light-red">Sıcak</span></td>
+                                <td style="text-align: right;">
+                                    <button class="btn-score-action" style="float: right;">
+                                        <i class="fa-solid fa-bolt"></i> Skorla
+                                    </button>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>
+                                    <div class="table-avatar-wrapper">
+                                        <div>
+                                            <strong>Ahmet Yılmaz</strong>
+                                            <span class="table-subtext">TechCorp</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="score-progress-wrapper">
+                                        <div class="score-progress-bg"><div class="score-progress-fill" style="width: 90%;"></div></div>
+                                        <div class="score-value-text">45</div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="score-progress-wrapper">
+                                        <div class="score-progress-bg"><div class="score-progress-fill" style="width: 80%;"></div></div>
+                                        <div class="score-value-text">40</div>
+                                    </div>
+                                </td>
+                                <td><div class="total-score-wrapper">85<span>/100</span></div></td>
+                                <td><span class="badge badge-light-red">Sıcak</span></td>
+                                <td style="text-align: right;">
+                                    <button class="btn-score-action" style="float: right;">
+                                        <i class="fa-solid fa-bolt"></i> Skorla
+                                    </button>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <div class="table-avatar-wrapper">
+                                        <div>
+                                            <strong>Selin Öztürk</strong>
+                                            <span class="table-subtext">E-Commerce Plus</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="score-progress-wrapper">
+                                        <div class="score-progress-bg"><div class="score-progress-fill" style="width: 40%;"></div></div>
+                                        <div class="score-value-text">20</div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="score-progress-wrapper">
+                                        <div class="score-progress-bg"><div class="score-progress-fill" style="width: 40%;"></div></div>
+                                        <div class="score-value-text">20</div>
+                                    </div>
+                                </td>
+                                <td><div class="total-score-wrapper">40<span>/100</span></div></td>
+                                <td><span class="badge badge-light-yellow">Ilık</span></td>
+                                <td style="text-align: right;">
+                                    <button class="btn-score-action" style="float: right;">
+                                        <i class="fa-solid fa-bolt"></i> Skorla
+                                    </button>
+                                </td>
+                            </tr>
+                            
+                             <tr>
+                                <td>
+                                    <div class="table-avatar-wrapper">
+                                        <div>
+                                            <strong>Kerem Aktaş</strong>
+                                            <span class="table-subtext">YeşilEnerji</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="score-progress-wrapper">
+                                        <div class="score-progress-bg"><div class="score-progress-fill" style="width: 40%;"></div></div>
+                                        <div class="score-value-text">20</div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="score-progress-wrapper">
+                                        <div class="score-progress-bg"><div class="score-progress-fill" style="width: 30%;"></div></div>
+                                        <div class="score-value-text">15</div>
+                                    </div>
+                                </td>
+                                <td><div class="total-score-wrapper">35<span>/100</span></div></td>
+                                <td><span class="badge badge-light-blue">Soğuk</span></td>
+                                <td style="text-align: right;">
+                                    <button class="btn-score-action" style="float: right;">
+                                        <i class="fa-solid fa-bolt"></i> Skorla
+                                    </button>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- jQuery and DataTables JS -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            $('#scoringTable').DataTable({
+                pageLength: 10,
+                lengthChange: false,
+                bFilter: false, // Üst arama çubuğu olmayacak, sadece datatable default
+                language: {
+                    info: "_TOTAL_ kayıttan _START_ - _END_ arası gösteriliyor",
+                    paginate: { next: "İleri", previous: "Geri" }
+                }
+            });
+            
+            // Backend'e bağlandığında "Skorla" butonlarına tıklanınca ilgili satırda AJAX çağrısı yapılacak.
+        });
+    </script>
+</body>
+</html>
