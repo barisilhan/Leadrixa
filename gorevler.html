@@ -172,34 +172,23 @@
                     
                     <div class="form-group task-form-full">
                         <label>Başlık <span style="color:red">*</span></label>
-                        <input type="text" class="form-control" placeholder="Örn: Teklif dosyasını gönder" required>
+                        <input type="text" class="form-control" required>
                     </div>
 
                     <div class="form-group task-form-full">
                         <label>Açıklama</label>
-                        <textarea class="form-control" placeholder="Görev detayları..."></textarea>
-                    </div>
-
-                    <!-- Lead Relation (Auto Pre-fill via URL or Search here) -->
-                    <div class="form-group task-form-full">
-                        <label>İlişkili Lead (Opsiyonel)</label>
-                        <select class="form-control" id="leadSelect">
-                            <option value="">-- Lead Seçin (Hızlı Ara) --</option>
-                            <option value="1">Ahmet Yılmaz (TechCorp)</option>
-                            <option value="2">Mehmet Demir (FinTek Bilişim)</option>
-                            <option value="3">Elif Kaya (MediaGrup)</option>
-                        </select>
-                        <small style="color:var(--text-muted); font-size:11px; margin-top:4px; display:block;">Lead detay sayfasından tıklandığında bu alan otomatik dolu gelir.</small>
+                        <textarea class="form-control" style="min-height: 100px;"></textarea>
                     </div>
 
                     <div class="task-form-grid">
                         <div class="form-group">
                             <label>Atanan Kişi <span style="color:red">*</span></label>
-                            <select class="form-control" required>
-                                <option>Satış Ekibi</option>
-                                <option>Pazarlama Ekibi</option>
-                                <option>Ben</option>
-                            </select>
+                            <input type="text" class="form-control" list="usersList" required>
+                            <datalist id="usersList">
+                                <option value="Barış İlhan">
+                                <option value="Satış Ekibi">
+                                <option value="Pazarlama Ekibi">
+                            </datalist>
                         </div>
                         <div class="form-group">
                             <label>Öncelik</label>
@@ -217,7 +206,7 @@
                         <div class="form-group">
                             <label>Kategori</label>
                             <select class="form-control">
-                                <option value="">Toplantı/Görüşme</option>
+                                <option value="">Seçin</option>
                                 <option>Takip</option>
                                 <option>Kalifikasyon</option>
                                 <option>Teklif</option>
@@ -228,9 +217,25 @@
                         </div>
                     </div>
 
-                    <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:20px;">
-                        <button type="button" class="btn-secondary" onclick="closeTaskModal()">İptal</button>
-                        <button type="submit" class="btn-primary">Kaydet</button>
+                    <!-- Lead Quick Search (Ekstra İstek) -->
+                    <div class="form-group task-form-full" style="margin-top: 15px; border-top: 1px dashed var(--border-color); padding-top: 15px;">
+                        <label>İlişkili Lead (Hızlı Arama)</label>
+                        <div style="position: relative;">
+                            <i class="fa-solid fa-magnifying-glass" style="position: absolute; left: 12px; top: 12px; color: var(--text-muted); font-size: 14px;"></i>
+                            <input type="text" class="form-control" id="leadQuickSearch" list="leadsList" placeholder="Lead, şirket veya kişi ara..." style="padding-left: 35px;">
+                            <datalist id="leadsList">
+                                <option value="Ahmet Yılmaz - TechCorp">
+                                <option value="Mehmet Demir - FinTek Bilişim">
+                                <option value="Elif Kaya - MediaGrup">
+                                <option value="Burak Çelik - SağlıkNet">
+                                <option value="deneme barış - barisilhan47@gmail.com">
+                            </datalist>
+                        </div>
+                        <small style="color:var(--text-muted); font-size:11px; margin-top:4px; display:block;">Klavyeden yazmaya başlayarak anında arayabilir ve seçebilirsiniz.</small>
+                    </div>
+
+                    <div style="display:flex; justify-content:flex-end; margin-top:25px;">
+                        <button type="submit" class="btn-primary" style="padding: 10px 30px;">Kaydet</button>
                     </div>
                 </form>
             </div>
@@ -244,10 +249,10 @@
         function openTaskModal(leadId = null) {
             document.getElementById('taskModal').style.display = 'block';
             if(leadId) {
-                // If opened from lead detail, auto select lead
-                document.getElementById('leadSelect').value = leadId;
+                // If opened from lead detail, auto select lead (Simulated text value)
+                document.getElementById('leadQuickSearch').value = "Ahmet Yılmaz - TechCorp"; // Example pre-fill
             } else {
-                document.getElementById('leadSelect').value = '';
+                document.getElementById('leadQuickSearch').value = '';
             }
         }
         function closeTaskModal() {
