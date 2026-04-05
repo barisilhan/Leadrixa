@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Görevler - Leadrixa CRM</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="gorevler.css">
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3 13h4v8H3v-8zm6-6h4v14H9V7zm6-4h4v18h-4V3z" fill="#1A2238"/>
+                    </svg>
+                </div>
+                <h3>Leadrixa <span>CRM PLATFORM</span></h3>
+            </div>
+            
+            <ul class="sidebar-menu">
+                <li><a href="dashboard.html"><i class="fa-solid fa-chart-pie"></i> Dashboard</a></li>
+                <li><a href="leadler.html"><i class="fa-solid fa-users"></i> Leadler</a></li>
+                <li><a href="skorlama.html"><i class="fa-solid fa-star-half-stroke"></i> Skorlama</a></li>
+                <li><a href="iletisim.html"><i class="fa-regular fa-comments"></i> İletişim & Nurturing</a></li>
+                <li><a href="pipeline.html"><i class="fa-solid fa-arrow-right-arrow-left"></i> Satış Pipeline</a></li>
+                <li><a href="gorevler.html" class="active"><i class="fa-solid fa-check-double"></i> Görevler</a></li>
+                <li><a href="#"><i class="fa-solid fa-chart-line"></i> Raporlama</a></li>
+                <li><a href="genel_tanimlar.html"><i class="fa-solid fa-gear"></i> Genel Tanımlar</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Topbar -->
+            <header class="topbar">
+                <div class="mobile-menu-toggle" style="display:none; cursor:pointer; font-size:20px; color:var(--primary-color);">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+                <!-- Görevler topbar -->
+                <div class="topbar-actions" style="margin-left: auto;">
+                    <button class="btn-add" onclick="openTaskModal()"><i class="fa-solid fa-plus"></i> Yeni Görev</button>
+                    <div class="notification-icon">
+                        <i class="fa-regular fa-bell"></i>
+                        <span class="badge"></span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                
+                <div class="page-title" style="margin-bottom: 20px;">
+                    <h1>Görevler</h1>
+                    <p>4 açık görev</p>
+                </div>
+
+                <!-- Filters -->
+                <div class="task-filters">
+                    <button class="filter-pill active">Hepsi</button>
+                    <button class="filter-pill">Bekliyor</button>
+                    <button class="filter-pill">Devam Ediyor</button>
+                    <button class="filter-pill">Tamamlandı</button>
+                </div>
+
+                <!-- Task List -->
+                <div class="task-list">
+                    
+                    <!-- Task Item 1 -->
+                    <div class="task-item">
+                        <label class="task-checkbox">
+                            <input type="checkbox" onchange="toggleTaskComplete(this)">
+                            <div class="checker"><i class="fa-solid fa-check"></i></div>
+                        </label>
+                        <div class="task-content">
+                            <div class="task-title">Ahmet Yılmaz ile demo toplantısı planla</div>
+                            <div class="task-desc">TechCorp CTO'su ile ürün demo toplantısı ayarla</div>
+                            <div class="task-badges">
+                                <span class="badge badge-priority-high">Yüksek</span>
+                                <span class="badge badge-assignee"><i class="fa-regular fa-user"></i> Satış Ekibi</span>
+                                <span class="badge badge-lead" title="Lead detayına git"><i class="fa-solid fa-link"></i> Ahmet Yılmaz (TechCorp)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Task Item 2 -->
+                    <div class="task-item">
+                        <label class="task-checkbox">
+                            <input type="checkbox" onchange="toggleTaskComplete(this)">
+                            <div class="checker"><i class="fa-solid fa-check"></i></div>
+                        </label>
+                        <div class="task-content">
+                            <div class="task-title">Mehmet Demir'e teklif gönder</div>
+                            <div class="task-desc">FinTek Bilişim için kurumsal teklif hazırla</div>
+                            <div class="task-badges">
+                                <span class="badge badge-priority-high">Acil</span>
+                                <span class="badge badge-assignee"><i class="fa-regular fa-user"></i> Ali Veli (Manager)</span>
+                                <span class="badge badge-lead" title="Lead detayına git"><i class="fa-solid fa-link"></i> Mehmet Demir (FinTek)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Task Item 3 -->
+                    <div class="task-item">
+                        <label class="task-checkbox">
+                            <input type="checkbox" onchange="toggleTaskComplete(this)">
+                            <div class="checker"><i class="fa-solid fa-check"></i></div>
+                        </label>
+                        <div class="task-content">
+                            <div class="task-title">Elif Kaya nurturing e-posta serisi</div>
+                            <div class="task-desc">MediaGrup için kişiselleştirilmiş içerik paketi hazırla</div>
+                            <div class="task-badges">
+                                <span class="badge badge-priority-mid">Orta</span>
+                                <span class="badge badge-assignee"><i class="fa-regular fa-user"></i> Pazarlama Ekibi</span>
+                                <span class="badge badge-lead" title="Lead detayına git"><i class="fa-solid fa-link"></i> Elif Kaya (MediaGrup)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Task Item 4 -->
+                    <div class="task-item">
+                        <label class="task-checkbox">
+                            <input type="checkbox" onchange="toggleTaskComplete(this)">
+                            <div class="checker"><i class="fa-solid fa-check"></i></div>
+                        </label>
+                        <div class="task-content">
+                            <div class="task-title">Burak Çelik onboarding başlat</div>
+                            <div class="task-desc">E-Commerce Plus teklif kabul sonrası onboarding süreci</div>
+                            <div class="task-badges">
+                                <span class="badge badge-priority-mid">Orta</span>
+                                <span class="badge badge-assignee"><i class="fa-regular fa-user"></i> Müşteri Başarısı</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Task Item 5 (Completed) -->
+                    <div class="task-item completed">
+                        <label class="task-checkbox">
+                            <input type="checkbox" checked onchange="toggleTaskComplete(this)">
+                            <div class="checker"><i class="fa-solid fa-check"></i></div>
+                        </label>
+                        <div class="task-content">
+                            <div class="task-title">Haftalık lead raporunu hazırla</div>
+                            <div class="task-desc">Bu hafta gelen leadlerin analiz raporu</div>
+                            <div class="task-badges">
+                                <span class="badge" style="background-color:#e9ecef; color:#adb5bd; border:none;">Orta</span>
+                                <span class="badge" style="background-color:#e9ecef; color:#adb5bd; border:none;"><i class="fa-regular fa-user"></i> Pazarlama Ekibi</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Yeni Görev Modalı -->
+    <div id="taskModal" class="modal">
+        <div class="modal-content" style="max-width: 550px;">
+            <div class="modal-header">
+                <h2>Yeni Görev</h2>
+                <span class="close-modal" onclick="closeTaskModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="taskForm" onsubmit="event.preventDefault(); closeTaskModal();">
+                    
+                    <div class="form-group task-form-full">
+                        <label>Başlık <span style="color:red">*</span></label>
+                        <input type="text" class="form-control" placeholder="Örn: Teklif dosyasını gönder" required>
+                    </div>
+
+                    <div class="form-group task-form-full">
+                        <label>Açıklama</label>
+                        <textarea class="form-control" placeholder="Görev detayları..."></textarea>
+                    </div>
+
+                    <!-- Lead Relation (Auto Pre-fill via URL or Search here) -->
+                    <div class="form-group task-form-full">
+                        <label>İlişkili Lead (Opsiyonel)</label>
+                        <select class="form-control" id="leadSelect">
+                            <option value="">-- Lead Seçin (Hızlı Ara) --</option>
+                            <option value="1">Ahmet Yılmaz (TechCorp)</option>
+                            <option value="2">Mehmet Demir (FinTek Bilişim)</option>
+                            <option value="3">Elif Kaya (MediaGrup)</option>
+                        </select>
+                        <small style="color:var(--text-muted); font-size:11px; margin-top:4px; display:block;">Lead detay sayfasından tıklandığında bu alan otomatik dolu gelir.</small>
+                    </div>
+
+                    <div class="task-form-grid">
+                        <div class="form-group">
+                            <label>Atanan Kişi <span style="color:red">*</span></label>
+                            <select class="form-control" required>
+                                <option>Satış Ekibi</option>
+                                <option>Pazarlama Ekibi</option>
+                                <option>Ben</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Öncelik</label>
+                            <select class="form-control">
+                                <option>Düşük</option>
+                                <option selected>Orta</option>
+                                <option>Yüksek</option>
+                                <option>Acil</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Bitiş Tarihi</label>
+                            <input type="date" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>Kategori</label>
+                            <select class="form-control">
+                                <option value="">Toplantı/Görüşme</option>
+                                <option>Takip</option>
+                                <option>Kalifikasyon</option>
+                                <option>Teklif</option>
+                                <option>Onboarding</option>
+                                <option>Nurturing</option>
+                                <option>Diğer</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:20px;">
+                        <button type="button" class="btn-secondary" onclick="closeTaskModal()">İptal</button>
+                        <button type="submit" class="btn-primary">Kaydet</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scriptler -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script>
+        // Modal toggles
+        function openTaskModal(leadId = null) {
+            document.getElementById('taskModal').style.display = 'block';
+            if(leadId) {
+                // If opened from lead detail, auto select lead
+                document.getElementById('leadSelect').value = leadId;
+            } else {
+                document.getElementById('leadSelect').value = '';
+            }
+        }
+        function closeTaskModal() {
+            document.getElementById('taskModal').style.display = 'none';
+        }
+
+        // Toggle task completeness UI
+        function toggleTaskComplete(cb) {
+            if($(cb).is(':checked')) {
+                $(cb).closest('.task-item').addClass('completed');
+            } else {
+                $(cb).closest('.task-item').removeClass('completed');
+            }
+        }
+    </script>
+</body>
+</html>
