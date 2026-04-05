@@ -321,3 +321,34 @@ body {
     font-size: 13px;
     margin-top: 4px;
 }
+
+/* Responsive Layout */
+@media (max-width: 992px) {
+    .app-container {
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        width: 100%;
+        height: auto;
+        padding-bottom: 10px;
+    }
+    
+    .sidebar-menu {
+        display: none; /* Can be toggled via JS but doing display:flex for horizontal scroll is better, keeping it simple */
+        flex-direction: row;
+        overflow-x: auto;
+        padding: 10px;
+        white-space: nowrap;
+    }
+
+    .mobile-menu-toggle {
+        display: block !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .page-content {
+        padding: 15px;
+    }
+}
