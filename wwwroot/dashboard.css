@@ -191,6 +191,10 @@
 .badge-light-green { background-color: #D8F3DC; color: #2D6A4F; }
 .badge-light-purple { background-color: #E0C3FC; color: #5A189A; }
 
+.badge-hot { background-color: var(--danger); color: white; }
+.badge-warm { background-color: var(--secondary-color); color: white; }
+.badge-cold { background-color: #4361EE; color: white; }
+
 /* Responsive Dashboard */
 @media (max-width: 1200px) {
     .kpi-container {
