@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Satış Pipeline - Leadrixa CRM</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="pipeline.css">
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3 13h4v8H3v-8zm6-6h4v14H9V7zm6-4h4v18h-4V3z" fill="#1A2238"/>
+                    </svg>
+                </div>
+                <h3>Leadrixa <span>CRM PLATFORM</span></h3>
+            </div>
+            
+            <ul class="sidebar-menu">
+                <li><a href="dashboard.html"><i class="fa-solid fa-chart-pie"></i> Dashboard</a></li>
+                <li><a href="leadler.html"><i class="fa-solid fa-users"></i> Leadler</a></li>
+                <li><a href="skorlama.html"><i class="fa-solid fa-star-half-stroke"></i> Skorlama</a></li>
+                <li><a href="iletisim.html"><i class="fa-regular fa-comments"></i> İletişim & Nurturing</a></li>
+                <li><a href="pipeline.html" class="active"><i class="fa-solid fa-arrow-right-arrow-left"></i> Satış Pipeline</a></li>
+                <li><a href="#"><i class="fa-solid fa-check-double"></i> Görevler</a></li>
+                <li><a href="#"><i class="fa-solid fa-chart-line"></i> Raporlama</a></li>
+                <li><a href="genel_tanimlar.html"><i class="fa-solid fa-gear"></i> Genel Tanımlar</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Topbar (Arama Yok) -->
+            <header class="topbar">
+                <div class="mobile-menu-toggle" style="display:none; cursor:pointer; font-size:20px; color:var(--primary-color);">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+                <div class="topbar-actions" style="margin-left: auto;">
+                    <div class="notification-icon">
+                        <i class="fa-regular fa-bell"></i>
+                        <span class="badge"></span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                
+                <div class="page-title" style="margin-bottom: 25px;">
+                    <h1>Satış Pipeline <span style="font-size: 13px; color: var(--text-muted); font-weight: normal; margin-left: 10px;">Manuel Satış Yönetimi Panosu</span></h1>
+                    <p>Lead özelinde süreç ilerletme (Kanban)</p>
+                </div>
+
+                <!-- Kanban Board -->
+                <div class="kanban-board">
+                    
+                    <!-- 1. Kalifiye -->
+                    <div class="kanban-column" id="col-kalifiye">
+                        <div class="kanban-header col-kalifiye">
+                            <div class="kanban-title"><div style="width:10px; height:10px; border-radius:50%; background-color:#4361EE;"></div> Kalifiye</div>
+                            <div class="kanban-count">2</div>
+                        </div>
+                        <div class="kanban-body">
+                            
+                            <!-- Card -->
+                            <div class="kanban-card">
+                                <div class="card-title">Ali Veli</div>
+                                <div class="card-company">Digital Çözümler Ltd.</div>
+                                <div class="card-meta">
+                                    <span class="card-score score-low"><i class="fa-solid fa-bolt"></i> Skor: 65</span>
+                                    <button class="btn-advance" onclick="moveNext(this)"><i class="fa-solid fa-arrow-right"></i> İlerlet</button>
+                                </div>
+                            </div>
+
+                            <!-- Card -->
+                            <div class="kanban-card">
+                                <div class="card-title">Ayşe Yılmaz</div>
+                                <div class="card-company">Yazılım A.Ş.</div>
+                                <div class="card-meta">
+                                    <span class="card-score score-low"><i class="fa-solid fa-bolt"></i> Skor: 72</span>
+                                    <button class="btn-advance" onclick="moveNext(this)"><i class="fa-solid fa-arrow-right"></i> İlerlet</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- 2. Satışa Hazır -->
+                    <div class="kanban-column" id="col-hazir">
+                        <div class="kanban-header col-satis-hazir">
+                            <div class="kanban-title"><div style="width:10px; height:10px; border-radius:50%; background-color:#F4A261;"></div> Satışa Hazır</div>
+                            <div class="kanban-count">1</div>
+                        </div>
+                        <div class="kanban-body">
+                            
+                            <!-- Card -->
+                            <div class="kanban-card">
+                                <div class="card-title">Mehmet Demir</div>
+                                <div class="card-company">FinTek Bilişim</div>
+                                <div class="card-meta">
+                                    <span class="card-score score-mid"><i class="fa-solid fa-bolt"></i> Skor: 85</span>
+                                    <button class="btn-advance" onclick="moveNext(this)"><i class="fa-solid fa-arrow-right"></i> İlerlet</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- 3. Teklif -->
+                    <div class="kanban-column" id="col-teklif">
+                        <div class="kanban-header col-teklif">
+                            <div class="kanban-title"><div style="width:10px; height:10px; border-radius:50%; background-color:#E09F3E;"></div> Teklif</div>
+                            <div class="kanban-count">1</div>
+                        </div>
+                        <div class="kanban-body">
+                            
+                            <!-- Card -->
+                            <div class="kanban-card">
+                                <div class="card-title">Leyla Can</div>
+                                <div class="card-company">E-Ticaret Depo</div>
+                                <div style="font-size: 11px; margin-top:5px; margin-bottom:5px; color:#E09F3E; font-weight:600;"><i class="fa-regular fa-file-lines"></i> Basic Paket Sunuldu</div>
+                                <div class="card-meta">
+                                    <span class="card-score score-high"><i class="fa-solid fa-bolt"></i> Skor: 95</span>
+                                    <button class="btn-advance" onclick="moveNext(this)"><i class="fa-solid fa-arrow-right"></i> İlerlet</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- 4. Kazanıldı -->
+                    <div class="kanban-column" id="col-kazanildi">
+                        <div class="kanban-header col-kazanildi">
+                            <div class="kanban-title"><div style="width:10px; height:10px; border-radius:50%; background-color:#2D6A4F;"></div> Kazanıldı</div>
+                            <div class="kanban-count">0</div>
+                        </div>
+                        <div class="kanban-body" style="background:#f4fbf7; opacity: 0.9;">
+                            <!-- Empty by default, filled via JS -->
+                        </div>
+                    </div>
+
+                    <!-- 5. Kaybedildi -->
+                    <div class="kanban-column" id="col-kaybedildi">
+                        <div class="kanban-header col-kaybedildi">
+                            <div class="kanban-title"><div style="width:10px; height:10px; border-radius:50%; background-color:#E63946;"></div> Kaybedildi</div>
+                            <div class="kanban-count">0</div>
+                        </div>
+                        <div class="kanban-body" style="background:#fff5f6; opacity: 0.9;">
+                            <!-- Empty by default, filled via JS -->
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script>
+        // Basit önyüz simülasyonu - İlerlet Butonu Fonksiyonu
+        function moveNext(btn) {
+            const card = $(btn).closest('.kanban-card');
+            const currentColumn = $(card).closest('.kanban-column');
+            const currentIndex = $('.kanban-column').index(currentColumn);
+            
+            // Eğer kaybedildi veya kazanıldı sekmesinde değilsek bir sonrakine taşı
+            if(currentIndex < 3) {
+                // Taşı
+                const nextColumnBody = $('.kanban-column').eq(currentIndex + 1).find('.kanban-body');
+                
+                // Hide card smoothly
+                card.fadeOut(200, function() {
+                    if(currentIndex + 1 === 3) {
+                        // Eğer 'Kazanıldı' aşamasına geçiyorsa butonu yeşil check ile değiştir ve deaktif et
+                        $(this).find('.btn-advance').replaceWith('<span style="color:#2D6A4F; font-size:12px; font-weight:bold;"><i class="fa-solid fa-check-circle"></i> Satış Kapandı</span>');
+                    }
+                    
+                    nextColumnBody.append(card);
+                    card.fadeIn(200);
+                    
+                    updateCounts();
+                });
+            }
+        }
+
+        function updateCounts() {
+            $('.kanban-column').each(function() {
+                var count = $(this).find('.kanban-card').length;
+                $(this).find('.kanban-count').text(count);
+            });
+        }
+    </script>
+</body>
+</html>

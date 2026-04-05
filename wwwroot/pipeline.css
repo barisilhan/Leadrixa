@@ -1,0 +1,137 @@
+/* Satış Pipeline Kanban Styles */
+
+.kanban-board {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding-bottom: 20px;
+    align-items: flex-start;
+    min-height: calc(100vh - 200px);
+}
+
+.kanban-column {
+    flex: 0 0 280px;
+    background-color: #F8F9FA;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100vh - 200px);
+}
+
+.kanban-header {
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--border-color);
+    border-top-left-radius: var(--radius-md);
+    border-top-right-radius: var(--radius-md);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.kanban-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.kanban-count {
+    background-color: var(--white);
+    color: var(--text-muted);
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-weight: 500;
+}
+
+.kanban-header.col-kalifiye { border-top: 4px solid #4361EE; }
+.kanban-header.col-satis-hazir { border-top: 4px solid #F4A261; }
+.kanban-header.col-teklif { border-top: 4px solid #E09F3E; }
+.kanban-header.col-kazanildi { border-top: 4px solid #2D6A4F; }
+.kanban-header.col-kaybedildi { border-top: 4px solid #E63946; }
+
+.kanban-body {
+    padding: 15px;
+    overflow-y: auto;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Kanban Cards */
+.kanban-card {
+    background-color: var(--white);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    padding: 15px;
+    cursor: grab;
+    transition: all 0.2s;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.kanban-card:hover {
+    box-shadow: var(--shadow-sm);
+    transform: translateY(-2px);
+    border-color: var(--primary-color);
+}
+
+.kanban-card:active {
+    cursor: grabbing;
+}
+
+.card-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 3px;
+}
+
+.card-company {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+}
+
+.card-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px dashed var(--border-color);
+    padding-top: 12px;
+    margin-top: 12px;
+}
+
+.card-score {
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.btn-advance {
+    background-color: #F8F9FA;
+    border: 1px solid var(--border-color);
+    color: var(--primary-color);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.btn-advance:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border-color: var(--primary-color);
+}
+
+/* Specific colors for score ranges if needed globally, but here we can just use main colors */
+.score-high { color: #E63946; }
+.score-mid { color: #F4A261; }
+.score-low { color: #4361EE; }
