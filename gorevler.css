@@ -1,172 +1,98 @@
-/* Görevler (Tasks) Page Specific Styles */
+/* Görevler Specific Layout */
 
-/* Task Filters (Pills) */
-.task-filters {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 25px;
-}
-
-.filter-pill {
-    background-color: transparent;
-    color: var(--text-muted);
-    border: none;
-    font-size: 14px;
-    font-weight: 500;
-    padding: 6px 16px;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: all 0.2s;
-}
-
-.filter-pill:hover {
-    color: var(--primary-color);
-}
-
-.filter-pill.active {
-    background-color: var(--primary-color);
-    color: var(--white);
-    font-weight: 600;
-}
-
-/* Task List */
 .task-list {
-    background-color: var(--white);
-    border-radius: var(--radius-md);
-    border: 1px solid var(--border-color);
     display: flex;
     flex-direction: column;
+    gap: 12px;
 }
 
 .task-item {
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-lg);
+    padding: 16px 20px;
     display: flex;
-    padding: 20px;
-    border-bottom: 1px solid var(--border-color);
-    transition: background-color 0.2s;
+    gap: 20px;
     align-items: flex-start;
-    gap: 15px;
-}
-
-.task-item:last-child {
-    border-bottom: none;
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .task-item:hover {
-    background-color: #F8F9FA;
+    box-shadow: var(--shadow-sm);
 }
 
-/* Custom Circular Checkbox */
-.task-checkbox {
-    margin-top: 2px;
+.task-item.completed {
+    opacity: 0.6;
+    background-color: var(--input-bg);
 }
 
-.task-checkbox input[type="checkbox"] {
+.task-item.completed .task-title {
+    text-decoration: line-through;
+    color: var(--text-muted);
+}
+
+.task-checkbox input {
     display: none;
 }
 
-.checker {
-    width: 20px;
-    height: 20px;
-    border: 1px solid #ced4da;
-    border-radius: 50%;
+.task-checkbox .checker {
+    width: 24px;
+    height: 24px;
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     cursor: pointer;
-    transition: all 0.2s;
     color: transparent;
-    font-size: 11px;
+    transition: all 0.2s;
+    background-color: var(--surface-color);
 }
 
-.task-checkbox input[type="checkbox"]:checked + .checker {
-    background-color: #2D6A4F;
-    border-color: #2D6A4F;
+.task-checkbox input:checked + .checker {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
     color: #fff;
 }
 
-/* Checkbox Hover Effect */
-.task-checkbox:hover .checker {
-    border-color: #2D6A4F;
-}
-
-/* Task Content */
 .task-content {
     flex-grow: 1;
 }
 
 .task-title {
     font-size: 15px;
-    color: var(--primary-color);
     font-weight: 600;
-    margin-bottom: 5px;
-    transition: color 0.2s;
+    margin-bottom: 4px;
 }
 
 .task-desc {
     font-size: 13px;
     color: var(--text-muted);
-    margin-bottom: 10px;
-    line-height: 1.4;
-}
-
-/* Strikethrough for completed tasks */
-.task-item.completed .task-title {
-    color: var(--text-muted);
-    text-decoration: line-through;
-}
-
-.task-item.completed .task-desc {
-    color: #ced4da;
+    margin-bottom: 12px;
 }
 
 .task-badges {
     display: flex;
     gap: 8px;
-    align-items: center;
+    flex-wrap: wrap;
 }
 
-/* Badge varieties for priorities & assignment */
 .badge-priority-high {
-    background-color: #fff5f6;
-    color: #E63946;
-    border: 1px solid #ffccd5;
+    background-color: rgba(230, 57, 70, 0.1);
+    color: var(--hot-color);
 }
 
-.badge-priority-mid {
-    background-color: #fffaef;
-    color: #F4A261;
-    border: 1px solid #ffe8cc;
+.badge-priority-medium {
+    background-color: rgba(244, 162, 97, 0.1);
+    color: #D47926;
 }
 
 .badge-assignee {
-    background-color: #f1f3f5;
-    color: #495057;
-    font-weight: 500;
+    background-color: rgba(15, 23, 42, 0.05);
+    color: var(--text-main);
 }
 
 .badge-lead {
-    background-color: #e7f5ff;
-    color: #1971c2;
-    font-weight: 500;
-    cursor: pointer;
-}
-
-.badge-lead:hover {
-    text-decoration: underline;
-}
-
-/* Task Modal Layout Adjustments */
-.task-form-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-}
-
-.task-form-full {
-    grid-column: span 2;
-}
-
-textarea.form-control {
-    resize: vertical;
-    min-height: 80px;
+    background-color: rgba(69, 123, 157, 0.1);
+    color: var(--cold-color);
 }

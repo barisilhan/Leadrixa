@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lead Detayı - LeadFlow CRM</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container" id="leadDetailPage">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <i data-lucide="layers"></i>
+                <span>LeadFlow CRM</span>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item"><i data-lucide="layout-dashboard"></i> Dashboard</a>
+                <a href="leadler.html" class="nav-item active"><i data-lucide="users"></i> Leadler</a>
+                <a href="skorlama.html" class="nav-item"><i data-lucide="activity"></i> Skorlama</a>
+                <a href="pipeline.html" class="nav-item"><i data-lucide="kanban"></i> Satış Pipeline</a>
+                <a href="iletisim.html" class="nav-item"><i data-lucide="message-square"></i> Nurturing</a>
+                <a href="gorevler.html" class="nav-item"><i data-lucide="check-square"></i> Görevler</a>
+                <a href="raporlama.html" class="nav-item"><i data-lucide="bar-chart-2"></i> Raporlama</a>
+                <a href="kampanya_onerileri.html" class="nav-item"><i data-lucide="lightbulb"></i> Öneriler</a>
+                <a href="kullanici_yonetimi.html" class="nav-item"><i data-lucide="user-cog"></i> Kullanıcılar</a>
+                <a href="genel_tanimlar.html" class="nav-item"><i data-lucide="settings"></i> Ayarlar</a>
+            </nav>
+        </aside>
+
+        <div class="main-wrapper">
+            <header class="topbar">
+                <div class="topbar-left" style="display:flex; align-items:center; gap:16px;">
+                    <button class="btn btn-ghost" onclick="window.history.back()"><i data-lucide="arrow-left"></i></button>
+                    <h2 style="font-weight:700;">Lead Profili</h2>
+                </div>
+                <div class="topbar-right">
+                    <div class="action-icon notification-icon" onclick="openNotifications(event)">
+                        <i data-lucide="bell"></i>
+                    </div>
+                </div>
+            </header>
+
+            <main class="page-content">
+                <div class="leads-grid" style="display:flex; gap:24px; margin-top:0;">
+                    
+                    <!-- Sol Panel: Profil Bilgileri -->
+                    <div class="card" style="flex:1; margin-bottom:0; position:relative;">
+                        <button class="btn btn-outline" style="position:absolute; top:16px; right:16px; padding:6px 12px; font-size:12px; color:#374151; font-weight:600; border-radius:9999px; display:flex; align-items:center; gap:6px; border-color:#d1d5db; background:#fff;" onclick="$('#newLeadModal').css('display', 'flex')" title="Düzenle">
+                            <i data-lucide="edit-3" style="width:13px;"></i> Düzenle
+                        </button>
+                        
+                        <div style="text-align:center; padding-bottom:20px; border-bottom:1px solid var(--border-color); margin-bottom:20px;">
+                            <div id="leadAvatarLetter" style="width:80px; height:80px; border-radius:12px; background-color:#f3f4f6; color:#4b5563; display:flex; align-items:center; justify-content:center; font-size:32px; font-weight:700; margin:0 auto 16px;">-</div>
+                            <h3 id="leadDetailName" style="font-size:24px; font-weight:800; color:#111827; margin-bottom:12px;">-</h3>
+                            <div style="display:flex; gap:8px; justify-content:center; flex-wrap:wrap;">
+                                <span class="badge" style="background-color:#eff6ff; color:#3b82f6; border:1px solid #bfdbfe; font-weight:500;" id="leadDetailTemperatureLabel">-</span>
+                                <span class="badge" style="background-color:#f5f3ff; color:#8b5cf6; border:1px solid #ddd6fe; font-weight:500;" id="leadDetailStatusLabel">-</span>
+                            </div>
+                        </div>
+                        
+                        <div style="display:flex; flex-direction:column; gap:20px;">
+                            <div style="display:flex; flex-direction:column; gap:6px;">
+                                <span style="font-size:12px; color:var(--text-muted); font-weight:600; text-transform:uppercase;">İletişim Bilgileri</span>
+                                
+                                <div style="display:flex; justify-content:space-between; align-items:center; background:#f9fafb; padding:12px; border-radius:8px; border:1px solid #f3f4f6;">
+                                    <div style="display:flex; flex-direction:column; gap:4px;">
+                                        <span style="color:#6b7280; font-size:12px;"><i data-lucide="phone" style="width:12px; margin-right:4px;"></i> Telefon</span>
+                                        <span id="detailPhone" style="font-weight:600; font-size:14px; color:#111827;">-</span>
+                                    </div>
+                                    <a href="#" id="waLink" target="_blank" style="display:flex; align-items:center; justify-content:center; width:36px; height:36px; background-color:#d1fae5; color:#10b981; border-radius:50%; transition:all 0.2s;">
+                                        <i data-lucide="message-circle" style="width:18px;"></i> <!-- WP Icon -->
+                                    </a>
+                                </div>
+
+                                <div style="display:flex; justify-content:space-between; align-items:center; background:#f9fafb; padding:12px; border-radius:8px; border:1px solid #f3f4f6;">
+                                    <div style="display:flex; flex-direction:column; gap:4px;">
+                                        <span style="color:#6b7280; font-size:12px;"><i data-lucide="mail" style="width:12px; margin-right:4px;"></i> E-posta</span>
+                                        <span id="detailEmail" style="font-weight:600; font-size:14px; color:#111827;">-</span>
+                                    </div>
+                                    <a href="#" id="mailLink" style="display:flex; align-items:center; justify-content:center; width:36px; height:36px; background-color:#e0e7ff; color:#4f46e5; border-radius:50%; transition:all 0.2s;">
+                                        <i data-lucide="send" style="width:18px;"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <div style="display:flex; flex-direction:column; gap:12px; border-top:1px solid var(--border-color); padding-top:16px;">
+                                <div style="display:flex; justify-content:space-between; font-size:13px; padding:4px 0;">
+                                    <span style="color:var(--text-muted);"><i data-lucide="briefcase" style="width:16px; vertical-align:middle; margin-right:6px;"></i> Şirket</span>
+                                    <span id="detailCompany" style="font-weight:600; color:#111827;">-</span>
+                                </div>
+                                <div style="display:flex; justify-content:space-between; font-size:13px; padding:4px 0;">
+                                    <span style="color:var(--text-muted);"><i data-lucide="map-pin" style="width:16px; vertical-align:middle; margin-right:6px;"></i> Konum</span>
+                                    <span id="detailCity" style="font-weight:600; color:#111827;">-</span>
+                                </div>
+                                <div style="display:flex; justify-content:space-between; font-size:13px; padding:4px 0;">
+                                    <span style="color:var(--text-muted);"><i data-lucide="share-2" style="width:16px; vertical-align:middle; margin-right:6px;"></i> Kaynak</span>
+                                    <span id="detailSource" style="font-weight:600; color:#111827;">-</span>
+                                </div>
+                                <div style="display:flex; justify-content:space-between; font-size:13px; padding:4px 0;">
+                                    <span style="color:var(--text-muted);"><i data-lucide="calendar" style="width:16px; vertical-align:middle; margin-right:6px;"></i> Oluşturulma</span>
+                                    <span id="detailCreatedAt" style="font-weight:600; color:#111827;">-</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="margin-top:24px; padding:20px; background: linear-gradient(145deg, #1e3a8a 0%, #312e81 100%); border-radius:12px; color:white; display:flex; align-items:center; justify-content:space-between; box-shadow:0 4px 6px -1px rgba(30,58,138,0.2);">
+                            <div style="display:flex; flex-direction:column;">
+                                <span style="font-size:13px; opacity:0.8; margin-bottom:4px; font-weight:500;">Lead Skoru</span>
+                                <span style="font-size:36px; font-weight:800; line-height:1;" id="leadScoreValue">0</span>
+                            </div>
+                            <div style="width:48px; height:48px; background:rgba(255,255,255,0.2); border-radius:50%; display:flex; align-items:center; justify-content:center;">
+                                <i data-lucide="activity" style="width:24px; color:white;"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sağ Panel: Aktiviteler ve Görevler -->
+                    <div style="flex:2; display:flex; flex-direction:column; gap:24px;">
+                        
+                        <!-- Inline Activity Composer -->
+                        <div class="card" style="margin-bottom:0; padding:20px; display:flex; flex-direction:column;">
+                            <div id="activityTabsContainer" style="border-bottom:1px solid #e5e7eb; padding-bottom:12px; margin-bottom:16px; display:flex; gap:16px; overflow-x:auto; white-space:nowrap; scrollbar-width:none;">
+                                <style>
+                                    #activityTabsContainer::-webkit-scrollbar { display: none; }
+                                    .act-tab { background:none; border:none; cursor:pointer; color:#6b7280; font-weight:500; font-size:13px; padding-bottom:4px; border-bottom:2px solid transparent; display:flex; align-items:center; transition:all 0.2s; white-space:nowrap; }
+                                    .act-tab:hover { color:#1e3a8a; }
+                                    .act-tab.active { color:#1e3a8a; font-weight:600; border-bottom-color:#1e3a8a; }
+                                    .attach-btn { transition:all 0.2s; border-radius:4px; padding:4px; display:flex; align-items:center; }
+                                    .attach-btn:hover { background-color:#f3f4f6; color:#111827; }
+                                </style>
+                                <button class="act-tab active" onclick="selectActivityTab(this, 'Not')"><i data-lucide="edit-2" style="width:14px; margin-right:4px;"></i> Not</button>
+                                <button class="act-tab" onclick="selectActivityTab(this, 'E-posta')"><i data-lucide="mail" style="width:14px; margin-right:4px;"></i> E-posta</button>
+                                <button class="act-tab" onclick="selectActivityTab(this, 'Telefon')"><i data-lucide="phone-call" style="width:14px; margin-right:4px;"></i> Telefon</button>
+                                <button class="act-tab" onclick="selectActivityTab(this, 'WhatsApp')"><i data-lucide="message-circle" style="width:14px; margin-right:4px;"></i> WhatsApp</button>
+                                <button class="act-tab" onclick="selectActivityTab(this, 'SMS')"><i data-lucide="message-square" style="width:14px; margin-right:4px;"></i> SMS</button>
+                                <button class="act-tab" onclick="selectActivityTab(this, 'Görev')"><i data-lucide="check-square" style="width:14px; margin-right:4px;"></i> Görev</button>
+                                <button class="act-tab" onclick="selectActivityTab(this, 'Sosyal Medya')"><i data-lucide="share-2" style="width:14px; margin-right:4px;"></i> Sosyal Medya</button>
+                                <button class="act-tab" onclick="selectActivityTab(this, 'Toplantı')"><i data-lucide="users" style="width:14px; margin-right:4px;"></i> Toplantı</button>
+                            </div>
+                            <textarea class="form-control" placeholder="Aktivite içeriğini buraya yazın..." style="height:90px; resize:none; border-color:#e5e7eb; background:#f9fafb; font-size:14px; width:100%; border-radius:8px; padding:12px;" id="inlineActivityDesc"></textarea>
+                            <div style="display:flex; justify-content:space-between; margin-top:16px; align-items:center;">
+                                <div style="display:flex; gap:12px; color:#6b7280;">
+                                    <div class="attach-btn" title="Dosya Ekle" style="cursor:pointer;" onclick="alert('Dosya yükleme penceresi açılıyor...')"><i data-lucide="paperclip" style="width:18px;"></i></div>
+                                    <div class="attach-btn" title="Resim Ekle" style="cursor:pointer;" onclick="alert('Resim yükleme penceresi açılıyor...')"><i data-lucide="image" style="width:18px;"></i></div>
+                                </div>
+                                <button class="btn btn-primary" style="background-color:#1e3a8a; font-weight:500; padding:8px 20px; font-size:14px; border-radius:6px; transition:transform 0.1s;" onmousedown="this.style.transform='scale(0.95)'" onmouseup="this.style.transform='scale(1)'" onclick="saveInlineActivity()">Kaydet</button>
+                            </div>
+                        </div>
+
+                        <div class="card" style="margin-bottom:0;">
+                            <div class="card-header">
+                                <span class="card-title">Aktivite Geçmişi</span>
+                            </div>
+                            <div id="leadActivityList" style="display:flex; flex-direction:column; gap:16px;">
+                                <!-- Injected by JS -->
+                            </div>
+                        </div>
+
+                        <div class="card" style="margin-bottom:0;">
+                            <div class="card-header">
+                                <span class="card-title">İlişkili Görevler</span>
+                            </div>
+                            <div id="leadTasksList" style="display:flex; flex-direction:column; gap:12px;">
+                                <!-- Injected by JS -->
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    
+    <!-- New/Edit Lead Modal -->
+    <div class="modal-overlay" id="newLeadModal">
+        <div class="modal-content" style="width:800px; max-width:95%;">
+            <div class="modal-header">
+                <h3 style="font-weight:700;">Lead Düzenle</h3>
+                <button class="btn-ghost" onclick="$('#newLeadModal').hide()"><i data-lucide="x"></i></button>
+            </div>
+            <div class="modal-body">
+                <form id="newLeadForm" style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+                    <div style="display: flex; flex-direction: column; gap: 16px;">
+                        <div class="form-group" style="margin:0;"><label>Ad Soyad <span style="color:#ef4444">*</span></label><input type="text" id="leadFullName" class="form-control" required></div>
+                        <div class="form-group" style="margin:0;"><label>E-posta <span style="color:#ef4444">*</span></label><input type="email" id="leadEmail" class="form-control" required></div>
+                        <div class="form-group" style="margin:0;"><label>Telefon</label><input type="tel" id="leadPhone" class="form-control" placeholder="05XXXXXXXXX" pattern="^05[0-9]{9}$" maxlength="11"></div>
+                        <div class="form-group" style="margin:0;"><label>Şirket</label><input type="text" id="leadCompany" class="form-control"></div>
+                        <div class="form-group" style="margin:0;"><label>Pozisyon</label><input type="text" id="leadPosition" class="form-control"></div>
+                        <div class="form-group" style="margin:0;"><label>Sektör</label><input type="text" id="leadIndustry" class="form-control"></div>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 16px;">
+                        <div class="form-group" style="margin:0;"><label>Şehir</label><input type="text" id="leadCity" class="form-control" placeholder="Şehir Seçin / Yazın"></div>
+                        <div class="form-group" style="margin:0;">
+                            <label>Kaynak <span style="color:#ef4444">*</span></label>
+                            <select id="leadSource" class="form-control" required>
+                                <option value="">Seçiniz</option>
+                                <option value="Web Formu">Web Formu</option>
+                                <option value="Arama">Arama</option>
+                                <option value="Sosyal Medya">Sosyal Medya</option>
+                                <option value="Partner">Partner</option>
+                            </select>
+                        </div>
+                        <div class="form-group" style="margin:0;">
+                            <label>Şirket Büyüklüğü</label>
+                            <select id="leadCompanySize" class="form-control">
+                                <option value="">Seçiniz</option>
+                                <option value="1-10">1-10 Çalışan</option>
+                                <option value="11-50">11-50 Çalışan</option>
+                                <option value="50+">50+ Çalışan</option>
+                            </select>
+                        </div>
+                        <div class="form-group" style="margin:0;">
+                            <label>Bütçe</label>
+                            <select id="leadBudget" class="form-control">
+                                <option value="">Seçiniz</option>
+                                <option value="Düşük">Düşük</option>
+                                <option value="Orta">Orta</option>
+                                <option value="Yüksek">Yüksek</option>
+                            </select>
+                        </div>
+                        <div class="form-group" style="margin:0;">
+                            <label>Müşteri Tipi</label>
+                            <select id="leadCustomerType" class="form-control">
+                                <option value="">Seçiniz</option>
+                                <option value="B2B">B2B</option>
+                                <option value="B2C">B2C</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div style="grid-column: 1 / -1; display: flex; flex-direction: column; gap: 16px; margin-top:8px;">
+                        <div class="form-group" style="margin:0;">
+                            <label>Notlar</label>
+                            <textarea id="leadNotes" class="form-control" style="height:100px; resize:none;"></textarea>
+                        </div>
+                    </div>
+                    <input type="hidden" id="leadScore" value="0">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline" onclick="$('#newLeadModal').hide()">İptal</button>
+                <button type="submit" form="newLeadForm" class="btn btn-primary" style="background-color:#1e3a8a;">Göncelle</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Old Activity Modal removed entirely -->
+
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="site.js"></script>
+    <script>
+        $(document).ready(function() { 
+            lucide.createIcons();
+            loadLeadDetailPage();
+            
+            // Re-apply icons on DOM injects for activities
+            $(document).ajaxComplete(function() {
+                lucide.createIcons();
+            });
+        });
+    </script>
+</body>
+</html>

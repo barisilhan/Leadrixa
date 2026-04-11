@@ -3,332 +3,364 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leadler - Leadrixa CRM</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- DataTables CSS -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/colreorder/1.7.0/css/colReorder.dataTables.min.css">
-    
+    <title>Leadler - LeadFlow CRM</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="leads.css">
-    
-    <style>
-        .page-actions {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-        }
-        .page-actions-right {
-            display: flex;
-            gap: 15px;
-        }
-        .btn-outline {
-            background: transparent;
-            border: 1px solid var(--border-color);
-            color: var(--primary-color);
-            padding: 8px 16px;
-            border-radius: var(--radius-sm);
-            cursor: pointer;
-            font-size: 13px;
-            font-weight: 500;
-        }
-        .btn-outline:hover {
-            background: #F1F3F5;
-        }
-    </style>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 </head>
 <body>
-
     <div class="app-container">
         <!-- Sidebar -->
         <aside class="sidebar">
             <div class="sidebar-header">
-                <div class="logo-icon">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M3 13h4v8H3v-8zm6-6h4v14H9V7zm6-4h4v18h-4V3z" fill="#1A2238"/>
-                    </svg>
-                </div>
-                <h3>Leadrixa <span>CRM PLATFORM</span></h3>
+                <i data-lucide="layers" style="color:#F59E0B;"></i>
+                <span>LeadFlow CRM</span>
             </div>
-            
-            <ul class="sidebar-menu">
-                <li><a href="dashboard.html"><i class="fa-solid fa-chart-pie"></i> Dashboard</a></li>
-                <li><a href="leadler.html" class="active"><i class="fa-solid fa-users"></i> Leadler</a></li>
-                <li><a href="skorlama.html"><i class="fa-solid fa-star-half-stroke"></i> Skorlama</a></li>
-                <li><a href="iletisim.html"><i class="fa-regular fa-comments"></i> İletişim & Nurturing</a></li>
-                <li><a href="pipeline.html"><i class="fa-solid fa-arrow-right-arrow-left"></i> Satış Pipeline</a></li>
-                <li><a href="gorevler.html"><i class="fa-solid fa-check-double"></i> Görevler</a></li>
-                <li><a href="#"><i class="fa-solid fa-chart-line"></i> Raporlama</a></li>
-                <li><a href="#"><i class="fa-solid fa-gear"></i> Genel Tanımlar</a></li>
-            </ul>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item"><i data-lucide="layout-dashboard"></i> Dashboard</a>
+                <a href="leadler.html" class="nav-item active"><i data-lucide="users"></i> Leadler</a>
+                <a href="skorlama.html" class="nav-item"><i data-lucide="activity"></i> Skorlama</a>
+                <a href="iletisim.html" class="nav-item"><i data-lucide="message-square"></i> İletişim & Nurturing</a>
+                <a href="pipeline.html" class="nav-item"><i data-lucide="kanban"></i> Satış Pipeline</a>
+                <a href="gorevler.html" class="nav-item"><i data-lucide="check-square"></i> Görevler</a>
+                <a href="raporlama.html" class="nav-item"><i data-lucide="bar-chart-2"></i> Raporlama</a>
+                <a href="genel_tanimlar.html" class="nav-item"><i data-lucide="settings"></i> Genel Tanımlar</a>
+                <a href="kampanya_onerileri.html" class="nav-item"><i data-lucide="lightbulb"></i> Kampanya Önerileri</a>
+                <a href="kullanici_yonetimi.html" class="nav-item"><i data-lucide="user-cog"></i> Kullanıcı Yönetimi</a>
+            </nav>
         </aside>
 
         <!-- Main Content -->
-        <main class="main-content">
+        <div class="main-wrapper" style="background-color: #f9fafb;">
             <!-- Topbar -->
             <header class="topbar">
-                <!-- Arama çubuğu kaldırıldı -->
-                <div class="mobile-menu-toggle" style="display:none; cursor:pointer; font-size:20px; color:var(--primary-color);">
-                    <i class="fa-solid fa-bars"></i>
-                </div>
-                <div class="topbar-actions" style="margin-left: auto;">
-                    <div class="notification-icon">
-                        <i class="fa-regular fa-bell"></i>
-                        <span class="badge"></span>
+                <div class="topbar-left"></div>
+                <div class="topbar-right">
+                    <div class="action-icon notification-icon" onclick="openNotifications(event)">
+                        <i data-lucide="bell" style="width:20px;"></i>
+                        <span class="badge" style="background-color:#ef4444; border-radius:50%; width:16px; height:16px; display:flex; align-items:center; justify-content:center; position:absolute; top:-4px; right:-4px;" id="notificationCountText">0</span>
+                    </div>
+                    <div class="action-icon" style="margin-left: 12px;">
+                        <i data-lucide="help-circle" style="width:20px;"></i>
+                    </div>
+                    <div class="user-profile" style="margin-left: 20px;">
+                        <span class="user-name" style="font-weight: 500;">Kullanıcı</span>
                     </div>
                 </div>
             </header>
 
             <!-- Page Content -->
-            <div class="page-content">
+            <main class="page-content">
                 
-                <div class="page-actions">
-                    <div class="page-title" style="margin-bottom:0;">
-                        <h1>Leadler</h1>
-                        <p>11 lead kayıtlı</p>
+                <!-- Page Header matching snapshot -->
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+                    <div>
+                        <h1 style="color: #111827; font-size: 24px; font-weight: 700; margin-bottom: 4px;">Leadler</h1>
+                        <p style="color: #6b7280; font-size: 14px;" id="totalLeadsText">...</p>
                     </div>
-                    <div class="page-actions-right">
-                        <button class="btn-outline" onclick="openModal('importModal')"><i class="fa-solid fa-upload"></i> Toplu İçe Aktar</button>
-                        <button class="btn-add" onclick="openModal('newLeadModal')"><i class="fa-solid fa-plus"></i> Yeni Lead</button>
+                    <div style="display: flex; gap: 12px;">
+                        <button class="btn btn-outline" style="display:flex; align-items:center; gap:8px; border-color:#e5e7eb; color:#374151; font-weight:500;" onclick="$('#bulkImportModal').css('display', 'flex')">
+                            <i data-lucide="upload" style="width:16px;"></i> Toplu İçe Aktar
+                        </button>
+                        <button class="btn btn-primary" style="display:flex; align-items:center; gap:8px; background-color:#1e3a8a; border:none; font-weight:500;" onclick="$('#newLeadModal').css('display', 'flex')">
+                            <i data-lucide="plus" style="width:16px;"></i> Yeni Lead
+                        </button>
                     </div>
                 </div>
 
-                <!-- Top Filters -->
-                <div class="filters-bar">
-                    <div class="filter-group" style="flex-grow: 1; max-width: 300px;">
-                        <i class="fa-solid fa-magnifying-glass" style="color:#ADB5BD;"></i>
+                <!-- Filters -->
+                <div class="leads-filters">
+                    <div class="search-container">
+                        <i data-lucide="search"></i>
                         <input type="text" id="globalSearch" placeholder="İsim, e-posta veya şirket...">
                     </div>
-                    <div class="filter-group">
-                        <i class="fa-solid fa-filter" style="color:#ADB5BD;"></i>
-                        <select id="filterSource">
-                            <option value="">Tüm Kaynaklar</option>
-                            <option value="web">Web Sitesi</option>
-                            <option value="partner">Partner Yönlendirme</option>
-                        </select>
-                    </div>
-                    <div class="filter-group">
-                        <select id="filterStatus">
+                    <div style="display:flex; gap:12px;">
+                        <div style="position:relative;">
+                            <i data-lucide="filter" style="position:absolute; left:12px; top:11px; color:#9ca3af; width:16px;"></i>
+                            <select id="filterSource" class="form-control" style="width:180px; padding-left: 36px;">
+                                <option value="">Tüm Kaynaklar</option>
+                                <option value="Web Sitesi Formu">Web Sitesi Formu</option>
+                                <option value="Sosyal Medya">Sosyal Medya</option>
+                                <option value="İçerik">İçerik</option>
+                                <option value="Etkinlik & Fuar">Etkinlik & Fuar</option>
+                                <option value="Partner Yönlendirme">Partner Yönlendirme</option>
+                                <option value="Müşteri Referansı">Müşteri Referansı</option>
+                                <option value="Soğuk Arama">Soğuk Arama</option>
+                            </select>
+                        </div>
+                        <select id="filterStatus" class="form-control" style="width:160px;">
                             <option value="">Tüm Durumlar</option>
-                            <option value="yeni">Yeni</option>
-                            <option value="skorlandi">Skorlandı</option>
+                            <option value="Yeni">Yeni</option>
+                            <option value="Zenginleştirildi">Zenginleştirildi</option>
+                            <option value="Skorlandı">Skorlandı</option>
+                            <option value="Nurturing">Nurturing</option>
+                            <option value="Kalifiye">Kalifiye</option>
+                            <option value="Satışa Hazır">Satışa Hazır</option>
+                            <option value="Teklif">Teklif</option>
+                            <option value="Kazanıldı">Kazanıldı</option>
+                            <option value="Kaybedildi">Kaybedildi</option>
+                        </select>
+                        <select id="filterTemperature" class="form-control" style="width:150px;">
+                            <option value="">Hepsi</option>
+                            <option value="Sıcak">Sıcak</option>
+                            <option value="Ilık">Ilık</option>
+                            <option value="Soğuk">Soğuk</option>
                         </select>
                     </div>
                 </div>
 
-                <!-- Data Table -->
-                <div class="table-card">
-                    <table id="leadsTable" class="display" style="width:100%">
+                <!-- Leads Table -->
+                <div class="leads-container">
+                    <table class="custom-table" id="leadsTable">
                         <thead>
                             <tr>
-                                <th>Lead</th>
-                                <th>Şirket</th>
-                                <th>Kaynak</th>
-                                <th>Skor</th>
-                                <th>Sıcaklık</th>
-                                <th>Durum</th>
-                                <th>Tarih</th>
+                                <th>LEAD</th>
+                                <th>ŞİRKET</th>
+                                <th>KAYNAK</th>
+                                <th>SKOR</th>
+                                <th>SICAKLIK</th>
+                                <th>DURUM</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <!-- Mock Data matched to screenshot -->
-                            <tr style="cursor: pointer;">
-                                <td>
-                                    <div class="table-avatar-wrapper">
-                                        <div class="table-avatar">D</div>
-                                        <div>
-                                            <strong>deneme barış</strong>
-                                            <span class="table-subtext">baris@email.com</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>-</td>
-                                <td>Partner Yönlendirme</td>
-                                <td><strong>31</strong></td>
-                                <td><span class="badge badge-cold">Soğuk</span></td>
-                                <td><span class="badge badge-light-purple">Skorlandı</span></td>
-                                <td><span class="table-subtext">03 Apr 2026</span></td>
-                            </tr>
-                            <tr style="cursor: pointer;">
-                                <td>
-                                    <div class="table-avatar-wrapper">
-                                        <div class="table-avatar">M</div>
-                                        <div>
-                                            <strong>Mehmet Demir</strong>
-                                            <span class="table-subtext">mehmet@fintek.io</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td><strong>FinTek</strong><span class="table-subtext">Finans</span></td>
-                                <td>Etkinlik & Fuar</td>
-                                <td><strong>97</strong></td>
-                                <td><span class="badge badge-hot">Sıcak</span></td>
-                                <td><span class="badge badge-light-yellow">Satışa Hazır</span></td>
-                                <td><span class="table-subtext">03 Apr 2026</span></td>
-                            </tr>
-                            <tr style="cursor: pointer;">
-                                <td>
-                                    <div class="table-avatar-wrapper">
-                                        <div class="table-avatar">S</div>
-                                        <div>
-                                            <strong>Selin Öztürk</strong>
-                                            <span class="table-subtext">selin@ecommerce.com</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td><strong>E-Commerce Plus</strong><span class="table-subtext">E-Ticaret</span></td>
-                                <td>İçerik</td>
-                                <td><strong>48</strong></td>
-                                <td><span class="badge badge-warm">Ilık</span></td>
-                                <td><span class="badge badge-light-purple">Skorlandı</span></td>
-                                <td><span class="table-subtext">03 Apr 2026</span></td>
-                            </tr>
+                        <tbody id="leadsTableBody">
+                            <!-- Dynamic Content -->
                         </tbody>
                     </table>
                 </div>
 
-            </div>
-        </main>
+            </main>
+        </div>
     </div>
 
-    <!-- Modals -->
-    
-    <!-- 1. Yeni Lead Ekle Modal -->
-    <div id="newLeadModal" class="modal-overlay">
-        <div class="modal-content" style="max-width: 600px;">
+    <!-- Notification Panel -->
+    <div id="notificationPanel" class="notification-panel">
+        <div class="notification-header">
+            <h4>Bildirimler</h4>
+        </div>
+        <div class="notification-body" id="notificationList">
+            <!-- Populated via JS -->
+        </div>
+        <div class="notification-footer">
+            <a href="gorevler.html?filter=open">Tüm Açık Görevleri Gör</a>
+        </div>
+    </div>
+
+    <!-- Bulk Import Modal -->
+    <div class="modal-overlay" id="bulkImportModal">
+        <div class="modal-content" style="width: 500px;">
+            <div class="modal-header">
+                <h3>Toplu İçe Aktar</h3>
+                <button class="btn-ghost" onclick="$('#bulkImportModal').hide()"><i data-lucide="x"></i></button>
+            </div>
+            <div class="modal-body" style="padding: 24px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+                    <div style="font-weight: 600; font-size: 15px; color: #111827;">1. Şablonu İndir</div>
+                    <a href="data:text/csv;charset=utf-8,FullName,Email,Phone,City,Industry,Source%0AÖrnek İsim,ornek@sirket.com,05554443322,İstanbul,Bilişim,Web Sitesi Formu" download="lead_sablon.csv" class="btn btn-outline" style="font-size: 13px; font-weight: 500; padding: 6px 12px; display:flex; align-items:center; gap:6px;">
+                        <i data-lucide="download" style="width: 14px;"></i> Şablonu İndir
+                    </a>
+                </div>
+                <div style="font-weight: 600; font-size: 15px; color: #111827; margin-bottom: 12px;">2. Veriyi Yükle</div>
+                <div style="border: 2px dashed #d1d5db; border-radius: 8px; padding: 40px; cursor: pointer; background-color: #f9fafb; text-align: center;" onclick="$('#fakeFileInput').click()">
+                    <i data-lucide="upload-cloud" style="width: 48px; height: 48px; color: #9ca3af; margin-bottom: 16px;"></i>
+                    <p style="color: #4b5563; font-weight: 500; margin-bottom: 8px;">CSV veya Excel dosyanızı buraya sürükleyin</p>
+                    <p style="color: #9ca3af; font-size: 13px;">Veya dosya seçmek için tıklayın</p>
+                </div>
+                <input type="file" id="fakeFileInput" style="display:none;" accept=".csv, .xlsx, .xls">
+                <div id="uploadStatus" style="margin-top: 16px; color: #10b981; font-weight: 500; display: none;">
+                    <i data-lucide="check-circle" style="width: 16px; vertical-align: middle;"></i> Başarıyla içe aktarıldı!
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline" onclick="$('#bulkImportModal').hide()">Kapat</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- New Lead Modal -->
+    <div class="modal-overlay" id="newLeadModal">
+        <div class="modal-content" style="width: 800px; max-width: 95%;">
             <div class="modal-header">
                 <h3>Yeni Lead Ekle</h3>
-                <i class="fa-solid fa-xmark" style="cursor: pointer;" onclick="closeModal('newLeadModal')"></i>
+                <button class="btn-ghost" onclick="$('#newLeadModal').hide()"><i data-lucide="x"></i></button>
             </div>
             <div class="modal-body">
-                <form class="form-grid">
-                    <div class="form-group">
-                        <label>Ad Soyad *</label>
-                        <input type="text" class="form-control" required>
+                <form id="newLeadForm" style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+                    <!-- Sol Sütun -->
+                    <div style="display: flex; flex-direction: column; gap: 16px;">
+                        <div class="form-group" style="margin:0;">
+                            <label>İsim</label>
+                            <input type="text" id="leadFullName" class="form-control" required placeholder="Lead adını girin">
+                        </div>
+                        <div class="form-group" style="margin:0;">
+                            <label style="display:flex; align-items:center; gap:4px; font-weight:500; color:#374151;">
+                                <i data-lucide="mail" style="width:14px; color:#6b7280;"></i> E-posta
+                            </label>
+                            <input type="email" id="leadEmail" class="form-control" placeholder="ornek@mail.com">
+                        </div>
+                        <div class="form-group" style="margin:0;">
+                            <label style="display:flex; align-items:center; gap:4px; font-weight:500; color:#374151;">
+                                <i data-lucide="phone" style="width:14px; color:#6b7280;"></i> Telefon
+                            </label>
+                            <input type="tel" id="leadPhone" class="form-control" pattern="^05[0-9]{9}$" maxlength="11" placeholder="05XXXXXXXXX">
+                            <span style="font-size:11px; color:#9ca3af; margin-top:4px; display:block;">11 haneli 05 ile başlayan formatta giriniz.</span>
+                        </div>
+                        <div class="form-group" style="margin:0;">
+                            <label>Firma</label>
+                            <input type="text" id="leadCompany" class="form-control" placeholder="Şirket adı">
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label>E-posta *</label>
-                        <input type="email" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Telefon</label>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label>Şirket</label>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label>Pozisyon</label>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label>Sektör</label>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label>Şehir</label>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label>Kaynak *</label>
-                        <select class="form-control" required>
-                            <option value="">Seçin</option>
-                            <option value="1">Web Sitesi</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Şirket Büyüklüğü</label>
-                        <select class="form-control"><option value="">Seçin</option></select>
-                    </div>
-                    <div class="form-group">
-                        <label>Bütçe</label>
-                        <select class="form-control"><option value="">Seçin</option></select>
-                    </div>
-                    <div class="form-group full-width">
-                        <label>Notes</label>
-                        <textarea class="form-control" rows="3"></textarea>
+                    
+                    <!-- Sağ Sütun -->
+                    <div style="display: flex; flex-direction: column; gap: 16px;">
+                        <div class="form-group" style="margin:0;">
+                            <label>Şehir</label>
+                            <div style="position:relative;">
+                                <i data-lucide="map-pin" style="position:absolute; left:12px; top:11px; color:#9ca3af; width:18px;"></i>
+                                <input type="text" id="leadCity" class="form-control" placeholder="Şehir Seçin / Yazın" style="padding-left: 40px;" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin:0;">
+                            <label>Kaynak</label>
+                            <div style="position:relative;">
+                                <i data-lucide="globe" style="position:absolute; left:12px; top:11px; color:#9ca3af; width:18px;"></i>
+                                <select id="leadSourceInput" class="form-control" style="padding-left: 40px;">
+                                    <option value="">Kaynak Seçin</option>
+                                    <option value="Web Sitesi Formu">Web Sitesi Formu</option>
+                                    <option value="Partner Yönlendirme">Partner Yönlendirme</option>
+                                    <option value="Soğuk Arama">Soğuk Arama</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin:0;">
+                            <label>Sektör</label>
+                            <div style="position:relative;">
+                                <i data-lucide="briefcase" style="position:absolute; left:12px; top:11px; color:#9ca3af; width:18px;"></i>
+                                <select id="leadIndustry" class="form-control" style="padding-left: 40px;">
+                                    <option value="">Sektör Seçin</option>
+                                    <option value="Bilişim">Bilişim</option>
+                                    <option value="Üretim">Üretim</option>
+                                    <option value="Sağlık">Sağlık</option>
+                                    <option value="Finans">Finans</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button class="btn-secondary" onclick="closeModal('newLeadModal')">İptal</button>
-                <button class="btn-add">Kaydet</button>
+                <button type="button" class="btn btn-outline" onclick="$('#newLeadModal').hide()">Vazgeç</button>
+                <button type="submit" form="newLeadForm" class="btn btn-primary" style="background-color:#1e3a8a;">Kaydet</button>
             </div>
         </div>
     </div>
 
-    <!-- 2. Toplu İçe Aktar Modal -->
-    <div id="importModal" class="modal-overlay">
-        <div class="modal-content" style="max-width: 600px;">
-            <div class="modal-header">
-                <h3><i class="fa-solid fa-arrow-up-from-bracket"></i> Toplu Lead İçe Aktarma (CSV)</h3>
-                <i class="fa-solid fa-xmark" style="cursor: pointer;" onclick="closeModal('importModal')"></i>
-            </div>
-            <div class="modal-body">
-                <div style="border: 1px solid var(--border-color); border-radius: 6px; padding: 15px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center;">
-                    <div>
-                        <h4 style="font-size: 14px; margin-bottom: 4px;">1. Şablonu İndir</h4>
-                        <p style="font-size: 12px; color: var(--text-muted);">CSV şablonunu indirin, kendi verilerinizle doldurun ve geri yükleyin. Zorunlu alanlar: full_name, email.</p>
-                    </div>
-                    <button class="btn-outline" style="white-space: nowrap;"><i class="fa-solid fa-download"></i> Şablonu İndir</button>
-                </div>
-
-                <div>
-                    <h4 style="font-size: 14px; margin-bottom: 10px;">2. CSV Dosyasını Yükle</h4>
-                    <div class="upload-zone">
-                        <i class="fa-regular fa-file-lines"></i>
-                        <h4>CSV dosyasını sürükle & bırak veya tıkla</h4>
-                        <p>Sadece .csv formatı desteklenir</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <!-- jQuery and DataTables JS -->
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/colreorder/1.7.0/js/dataTables.colReorder.min.js"></script>
-    
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    <script src="site.js"></script>
     <script>
         $(document).ready(function() {
-            // Initialize DataTable with ColReorder
-            var table = $('#leadsTable').DataTable({
-                colReorder: true, // Sürükle bırak kolon yeri değiştirme
-                pageLength: 10,
-                lengthChange: false,
-                language: {
-                    search: "Tabloda Ara:",
-                    info: "_TOTAL_ kayıttan _START_ - _END_ arası gösteriliyor",
-                    paginate: { next: "İleri", previous: "Geri" }
+            lucide.createIcons();
+            if(typeof loadLeadsPage === 'function') loadLeadsPage(); 
+            
+            // City Autocomplete list
+            var iller = ["Adana", "Adıyaman", "Afyon", "Ağrı", "Amasya", "Ankara", "Antalya", "Artvin", "Aydın", "Balıkesir", "Bilecik", "Bingöl", "Bitlis", "Bolu", "Burdur", "Bursa", "Çanakkale", "Çankırı", "Çorum", "Denizli", "Diyarbakır", "Edirne", "Elazığ", "Erzincan", "Erzurum", "Eskişehir", "Gaziantep", "Giresun", "Gümüşhane", "Hakkari", "Hatay", "Isparta", "Mersin", "İstanbul", "İzmir", "Kars", "Kastamonu", "Kayseri", "Kırklareli", "Kırşehir", "Kocaeli", "Konya", "Kütahya", "Malatya", "Manisa", "Kahramanmaraş", "Mardin", "Muğla", "Muş", "Nevşehir", "Niğde", "Ordu", "Rize", "Sakarya", "Samsun", "Siirt", "Sinop", "Sivas", "Tekirdağ", "Tokat", "Trabzon", "Tunceli", "Şanlıurfa", "Uşak", "Van", "Yozgat", "Zonguldak", "Aksaray", "Bayburt", "Karaman", "Kırıkkale", "Batman", "Şırnak", "Bartın", "Ardahan", "Iğdır", "Yalova", "Karabük", "Kilis", "Osmaniye", "Düzce"];
+            
+            function trToEnLower(text) {
+                return text.replace(/Ğ/g, 'g').replace(/Ü/g, 'u').replace(/Ş/g, 's').replace(/I/g, 'i').replace(/İ/g, 'i').replace(/Ö/g, 'o').replace(/Ç/g, 'c')
+                           .replace(/ğ/g, 'g').replace(/ü/g, 'u').replace(/ş/g, 's').replace(/ı/g, 'i').replace(/ö/g, 'o').replace(/ç/g, 'c').toLowerCase();
+            }
+
+            $("#leadCity").autocomplete({ 
+                source: function(request, response) {
+                    var term = trToEnLower(request.term);
+                    var filtered = iller.filter(function(il) {
+                        return trToEnLower(il).includes(term);
+                    });
+                    response(filtered);
+                } 
+            });
+
+            $('#leadFullName, #leadEmail, #leadPhone').on('blur keyup', function() {
+                var btn = $(this);
+                if(btn.attr('id') === 'leadFullName' && !btn.val().trim()) {
+                    btn.css({'border-color': '#ef4444', 'background-color': '#fef2f2'});
+                } else if(btn.attr('id') === 'leadFullName') {
+                    btn.css({'border-color': '', 'background-color': ''});
+                }
+                
+                if(btn.attr('id') === 'leadEmail' || btn.attr('id') === 'leadPhone') {
+                    if(!$('#leadEmail').val() && !$('#leadPhone').val()) {
+                        $('#leadEmail, #leadPhone').css({'border-color': '#ef4444', 'background-color': '#fef2f2'});
+                    } else {
+                        $('#leadEmail, #leadPhone').css({'border-color': '', 'background-color': ''});
+                    }
                 }
             });
 
-            // Gelişmiş Filtre Bağlantıları
-            $('#globalSearch').on('keyup', function() {
-                table.search(this.value).draw();
+            $('#newLeadForm').on('submit', function(e) {
+                e.preventDefault();
+
+                var adVal = $('#leadFullName').val();
+                if(!adVal || adVal.trim() === '') {
+                    $('#leadFullName').css({'border-color': '#ef4444', 'background-color': '#fef2f2'});
+                    alert('Lütfen İsim - Soyisim giriniz.');
+                    return false;
+                }
+
+                var epostaVal = $('#leadEmail').val();
+                var telVal = $('#leadPhone').val();
+                if(!epostaVal && !telVal) {
+                    $('#leadEmail, #leadPhone').css({'border-color': '#ef4444', 'background-color': '#fef2f2'});
+                    alert('Lütfen en az bir iletişim bilgisi (E-posta veya Telefon) giriniz.');
+                    return false;
+                }
+
+                $.ajax({
+                    url: apiUrl('/api/leads'),
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({
+                        fullName: $('#leadFullName').val(),
+                        email: $('#leadEmail').val(),
+                        phone: $('#leadPhone').val() || null,
+                        company: $('#leadCompany').val() || null,
+                        city: $('#leadCity').val() || null,
+                        industry: $('#leadIndustry').val() || null,
+                        source: $('#leadSourceInput').val() || 'Diğer',
+                        score: 0,
+                        temperature: 'Soğuk',
+                        status: 'Yeni'
+                    }),
+                    success: function() {
+                        $('#newLeadModal').hide();
+                        loadLeadsPage();
+                        $('#newLeadForm')[0].reset();
+                    }
+                });
             });
         });
 
-        // Modal Functions
-        function openModal(id) {
-            document.getElementById(id).style.display = 'flex';
-        }
-
-        function closeModal(id) {
-            document.getElementById(id).style.display = 'none';
-        }
-
-        // Close modal when clicking outside
-        window.onclick = function(event) {
-            if (event.target.classList.contains('modal-overlay')) {
-                event.target.style.display = 'none';
+        $('#fakeFileInput').on('change', function() {
+            if(this.files.length > 0) {
+                $('#uploadStatus').show();
+                // Send dummy request to new bulk api
+                var mockLeads = [{ fullName: "Toplu Aktarım Örnek", email: "toplu@aktarim.com" }];
+                $.ajax({
+                    url: apiUrl('/api/leads/bulk'),
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(mockLeads),
+                    success: function() {
+                        setTimeout(function() {
+                            $('#bulkImportModal').hide();
+                            $('#uploadStatus').hide();
+                            loadLeadsPage(); // refresh
+                        }, 1500);
+                    }
+                });
             }
-        }
+        });
     </script>
 </body>
 </html>

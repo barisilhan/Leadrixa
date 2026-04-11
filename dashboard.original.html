@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Leadrixa CRM</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3 13h4v8H3v-8zm6-6h4v14H9V7zm6-4h4v18h-4V3z" fill="#1A2238"/>
+                    </svg>
+                </div>
+                <h3>Leadrixa <span>CRM PLATFORM</span></h3>
+            </div>
+            
+            <ul class="sidebar-menu">
+                <li><a href="dashboard.html" class="active"><i class="fa-solid fa-chart-pie"></i> Dashboard</a></li>
+                <li><a href="leadler.html"><i class="fa-solid fa-users"></i> Leadler</a></li>
+                <li><a href="skorlama.html"><i class="fa-solid fa-star-half-stroke"></i> Skorlama</a></li>
+                <li><a href="iletisim.html"><i class="fa-regular fa-comments"></i> İletişim & Nurturing</a></li>
+                <li><a href="pipeline.html"><i class="fa-solid fa-arrow-right-arrow-left"></i> Satış Pipeline</a></li>
+                <li><a href="gorevler.html"><i class="fa-solid fa-check-double"></i> Görevler</a></li>
+                <li><a href="#"><i class="fa-solid fa-chart-line"></i> Raporlama</a></li>
+                <li><a href="#"><i class="fa-solid fa-gear"></i> Genel Tanımlar</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Topbar -->
+            <header class="topbar">
+                <!-- Arama çubuğu kaldırıldı -->
+                <div class="mobile-menu-toggle" style="display:none; cursor:pointer; font-size:20px; color:var(--primary-color);">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+                
+                <div class="topbar-actions" style="margin-left: auto;">
+                    <button class="btn-add"><i class="fa-solid fa-plus"></i> Yeni Lead</button>
+                    <div class="notification-icon">
+                        <i class="fa-regular fa-bell"></i>
+                        <span class="badge"></span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                <div class="page-title">
+                    <h1>Dashboard</h1>
+                    <p>Lead yönetimi genel görünüm</p>
+                </div>
+
+                <!-- KPI Cards -->
+                <div class="kpi-container">
+                    <div class="kpi-card" style="cursor: pointer;" onclick="window.location.href='leadler.html'">
+                        <div class="kpi-icon icon-blue"><i class="fa-solid fa-user-group"></i></div>
+                        <div class="kpi-value">11</div>
+                        <div class="kpi-title">Toplam Lead</div>
+                    </div>
+                    <div class="kpi-card" style="cursor: pointer;" onclick="window.location.href='leadler.html?temp=hot'">
+                        <div class="kpi-icon icon-red"><i class="fa-solid fa-fire"></i></div>
+                        <div class="kpi-value">3</div>
+                        <div class="kpi-title">Sıcak Lead</div>
+                    </div>
+                    <div class="kpi-card" style="cursor: pointer;" onclick="window.location.href='leadler.html?temp=warm'">
+                        <div class="kpi-icon icon-yellow"><i class="fa-solid fa-temperature-half"></i></div>
+                        <div class="kpi-value">4</div>
+                        <div class="kpi-title">Ilık Lead</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-icon icon-green"><i class="fa-solid fa-arrow-trend-up"></i></div>
+                        <div class="kpi-value">%9</div>
+                        <div class="kpi-title">Dönüşüm Oranı</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-icon icon-purple"><i class="fa-solid fa-bullseye"></i></div>
+                        <div class="kpi-value">51</div>
+                        <div class="kpi-title">Ort. Skor</div>
+                    </div>
+                </div>
+
+                <!-- Charts -->
+                <div class="charts-container">
+                    <div class="chart-card">
+                        <h4>Lead Kaynakları</h4>
+                        <div style="height: 250px; display: flex; justify-content: center;">
+                            <canvas id="sourceChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="chart-card">
+                        <h4>Lead Skor Dağılımı</h4>
+                        <div style="height: 250px;">
+                            <canvas id="scoreChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lower Section -->
+                <div class="lower-container">
+                    <!-- Pipeline -->
+                    <div class="list-card">
+                        <h4>Pipeline Durumu</h4>
+                        <div class="pipeline-item" onclick="window.location.href='leadler.html?status=yeni'">
+                            <div class="pipeline-label">Yeni</div>
+                            <div class="pipeline-bar-wrapper"><div class="pipeline-bar bar-blue" style="width: 10%;">1</div></div>
+                        </div>
+                        <div class="pipeline-item" onclick="window.location.href='leadler.html?status=zenginlestirildi'">
+                            <div class="pipeline-label">Zenginleştirildi</div>
+                            <div class="pipeline-bar-wrapper"><div class="pipeline-bar bar-purple" style="width: 10%;">1</div></div>
+                        </div>
+                        <div class="pipeline-item" onclick="window.location.href='leadler.html?status=skorlandi'">
+                            <div class="pipeline-label">Skorlandı</div>
+                            <div class="pipeline-bar-wrapper"><div class="pipeline-bar bar-blue" style="width: 30%;">3</div></div>
+                        </div>
+                        <div class="pipeline-item" onclick="window.location.href='leadler.html?status=nurturing'">
+                            <div class="pipeline-label">Nurturing</div>
+                            <div class="pipeline-bar-wrapper"><div class="pipeline-bar bar-yellow" style="width: 20%;">2</div></div>
+                        </div>
+                         <div class="pipeline-item" onclick="window.location.href='leadler.html?status=kalifiye'">
+                            <div class="pipeline-label">Kalifiye</div>
+                            <div class="pipeline-bar-wrapper"><div class="pipeline-bar bar-green" style="width: 10%;">1</div></div>
+                        </div>
+                         <div class="pipeline-item">
+                            <div class="pipeline-label">Satışa Hazır</div>
+                            <div class="pipeline-bar-wrapper"><div class="pipeline-bar bar-orange" style="width: 10%;">1</div></div>
+                        </div>
+                         <div class="pipeline-item">
+                            <div class="pipeline-label">Teklif</div>
+                            <div class="pipeline-bar-wrapper"><div class="pipeline-bar bar-pink" style="width: 10%;">1</div></div>
+                        </div>
+                         <div class="pipeline-item">
+                            <div class="pipeline-label">Kazanıldı</div>
+                            <div class="pipeline-bar-wrapper"><div class="pipeline-bar bar-green" style="width: 10%;">1</div></div>
+                        </div>
+                         <div class="pipeline-item">
+                            <div class="pipeline-label">Kaybedildi</div>
+                            <div class="pipeline-bar-wrapper"><div class="pipeline-bar bar-red" style="width: 10%;">1</div></div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Leads List -->
+                    <div class="list-card">
+                        <h4>Son Eklenen Leadler</h4>
+                        
+                        <div class="recent-lead-item">
+                            <div class="lead-info-wrapper">
+                                <div class="lead-avatar">D</div>
+                                <div class="lead-details">
+                                    <h5>deneme barış</h5>
+                                    <p>baris@email.com</p>
+                                </div>
+                            </div>
+                            <div>
+                                <span class="badge badge-cold">Soğuk</span>
+                                <span class="badge badge-light-purple">Skorlandı</span>
+                            </div>
+                        </div>
+
+                        <div class="recent-lead-item">
+                            <div class="lead-info-wrapper">
+                                <div class="lead-avatar">M</div>
+                                <div class="lead-details">
+                                    <h5>Mehmet Demir</h5>
+                                    <p>FinTek</p>
+                                </div>
+                            </div>
+                            <div>
+                                <span class="badge badge-hot">Sıcak</span>
+                                <span class="badge badge-light-yellow">Satışa Hazır</span>
+                            </div>
+                        </div>
+
+                        <div class="recent-lead-item">
+                            <div class="lead-info-wrapper">
+                                <div class="lead-avatar">S</div>
+                                <div class="lead-details">
+                                    <h5>Selin Öztürk</h5>
+                                    <p>E-Commerce Plus</p>
+                                </div>
+                            </div>
+                            <div>
+                                <span class="badge badge-warm">Ilık</span>
+                                <span class="badge badge-light-purple">Skorlandı</span>
+                            </div>
+                        </div>
+
+                        <div class="recent-lead-item">
+                            <div class="lead-info-wrapper">
+                                <div class="lead-avatar">B</div>
+                                <div class="lead-details">
+                                    <h5>Burak Çelik</h5>
+                                    <p>SağlıkNet</p>
+                                </div>
+                            </div>
+                            <div>
+                                <span class="badge badge-hot">Sıcak</span>
+                                <span class="badge badge-light-red">Teklif</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Chart.js Initialization
+        document.addEventListener("DOMContentLoaded", function() {
+            // Source Doughnut Chart
+            const ctxSource = document.getElementById('sourceChart').getContext('2d');
+            new Chart(ctxSource, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Partner Yönlendirme', 'Eğitim & Fuar', 'İçerik', 'Müşteri Referansı', 'Soğuk Arama', 'Web Sitesi Formu', 'Sosyal Medya'],
+                    datasets: [{
+                        data: [2, 2, 2, 1, 1, 2, 1],
+                        backgroundColor: ['#1A2238', '#F4A261', '#2A9D8F', '#E76F51', '#457B9D', '#A8DADC', '#E63946'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'right', labels: { boxWidth: 12, font: { size: 11 } } }
+                    },
+                    cutout: '70%'
+                }
+            });
+
+            // Score Distribution Bar Chart
+            const ctxScore = document.getElementById('scoreChart').getContext('2d');
+            new Chart(ctxScore, {
+                type: 'bar',
+                data: {
+                    labels: ['0-20', '21-40', '41-60', '61-80', '81-100'],
+                    datasets: [{
+                        label: 'Lead Sayısı',
+                        data: [1, 3, 4, 1, 2],
+                        backgroundColor: '#1A2238',
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: { beginAtZero: true, grid: { borderDash: [2, 2] }, ticks: { stepSize: 1 } },
+                        x: { grid: { display: false } }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

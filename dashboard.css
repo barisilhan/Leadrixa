@@ -1,226 +1,246 @@
-/* Dashboard & Layout Component Styles for Leadrixa */
+/* Base44 Dashboard Layout */
 
-/* KPI Cards */
 .kpi-container {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 20px;
-    margin-bottom: 25px;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
 }
 
 .kpi-card {
-    background-color: var(--white);
-    padding: 20px;
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-sm);
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb; /* Very subtle border */
+    border-radius: 12px;
+    padding: 24px 16px;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.kpi-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
 }
 
 .kpi-icon {
-    width: 32px;
-    height: 32px;
-    border-radius: 8px;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
     display: flex;
-    align-items: center;
     justify-content: center;
-    margin-bottom: 12px;
-    font-size: 14px;
+    align-items: center;
+    margin-bottom: 16px;
 }
 
-.icon-blue { background-color: rgba(26, 34, 56, 0.1); color: var(--primary-color); }
-.icon-red { background-color: rgba(230, 57, 70, 0.1); color: var(--danger); }
-.icon-yellow { background-color: rgba(244, 162, 97, 0.1); color: var(--secondary-color); }
-.icon-green { background-color: rgba(42, 157, 143, 0.1); color: var(--success); }
-.icon-purple { background-color: rgba(111, 66, 193, 0.1); color: #6f42c1; }
+.kpi-icon i {
+    width: 20px;
+    height: 20px;
+}
+
+/* Icon Colors exactly like the screenshot */
+.icon-blue { background-color: #eff6ff; color: #3b82f6; }
+.icon-red { background-color: #fef2f2; color: #ef4444; }
+.icon-orange { background-color: #fff7ed; color: #f97316; }
+.icon-green { background-color: #f0fdf4; color: #22c55e; }
+.icon-purple { background-color: #faf5ff; color: #a855f7; }
+.icon-lightorange { background-color: #ffedd5; color: #fb923c; }
 
 .kpi-value {
-    font-size: 24px;
+    font-size: 32px;
     font-weight: 700;
-    color: var(--primary-color);
-    margin-bottom: 4px;
+    color: #111827; /* Dark almost black */
+    line-height: 1;
+    margin-bottom: 8px;
 }
 
 .kpi-title {
     font-size: 13px;
-    color: var(--text-muted);
+    color: #6b7280; /* Gray muted text */
+    text-align: center;
+    font-weight: 500;
 }
 
-/* Charts Section */
 .charts-container {
     display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    gap: 20px;
-    margin-bottom: 25px;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
 }
 
 .chart-card {
-    background-color: var(--white);
-    padding: 20px;
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-sm);
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
 
 .chart-card h4 {
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 600;
-    color: var(--primary-color);
+    color: #111827;
     margin-bottom: 20px;
 }
 
-/* Lower Section */
+.chart-wrapper {
+    height: 280px;
+    position: relative;
+    width: 100%;
+}
+
+/* Lower Container for Base44 scrolled view */
 .lower-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 20px;
+    gap: 24px;
+    margin-top: 24px;
 }
 
 .list-card {
-    background-color: var(--white);
-    padding: 20px;
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-sm);
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
 
 .list-card h4 {
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 600;
-    color: var(--primary-color);
-    margin-bottom: 20px;
+    color: #111827;
+    margin-bottom: 24px;
 }
 
-/* Pipeline Bars */
-.pipeline-item {
+/* Pipeline styles */
+.pipeline-list {
     display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.pipeline-item {
+    display: grid;
+    grid-template-columns: 100px 1fr;
     align-items: center;
-    margin-bottom: 15px;
+    gap: 16px;
 }
 
 .pipeline-label {
-    width: 100px;
-    font-size: 13px;
-    color: var(--text-muted);
+    font-size: 14px;
+    color: #6b7280;
+    font-weight: 500;
 }
 
 .pipeline-bar-wrapper {
-    flex-grow: 1;
-    background-color: #F1F3F5;
-    height: 14px;
-    border-radius: 10px;
-    overflow: hidden;
-    margin-right: 15px;
+    background-color: #f3f4f6;
+    height: 28px;
+    border-radius: 9999px;
     position: relative;
-    cursor: pointer;
+    overflow: visible; /* so circle can break out if needed, but it's inside */
+    display: flex;
+    align-items: center;
 }
 
-.pipeline-bar {
+.pipeline-bar-fill {
     height: 100%;
-    border-radius: 10px;
-    transition: width 0.5s;
+    border-radius: 9999px;
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    padding-right: 8px;
-    color: var(--white);
-    font-size: 10px;
-    font-weight: bold;
+    padding-right: 4px;
+    min-width: 32px;
+    transition: width 0.5s ease;
 }
 
-.bar-blue { background-color: #4361EE; }
-.bar-purple { background-color: #7209B7; }
-.bar-yellow { background-color: var(--secondary-color); }
-.bar-green { background-color: var(--success); }
-.bar-red { background-color: var(--danger); }
-.bar-orange { background-color: #F77F00; }
-.bar-pink { background-color: #F72585; }
-
-/* Recent Leads List */
-.recent-lead-item {
+.pipeline-count {
+    width: 20px;
+    height: 20px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
     display: flex;
     align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* Colors for Pipeline bars based on Base44 */
+.pipe-skorlandi { background-color: #6366f1; } /* Indigo */
+.pipe-nurturing { background-color: #eab308; } /* Yellow */
+.pipe-teklif { background-color: #ec4899; } /* Pink */
+.pipe-kazanildi { background-color: #22c55e; } /* Green */
+.pipe-kaybedildi { background-color: #ef4444; } /* Red */
+
+/* Recent Leads styles */
+.recent-leads-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.recent-lead-item {
+    display: flex;
     justify-content: space-between;
-    padding: 12px 0;
-    border-bottom: 1px solid var(--border-color);
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid #f3f4f6;
 }
 
 .recent-lead-item:last-child {
     border-bottom: none;
+    padding-bottom: 0;
 }
 
-.lead-info-wrapper {
+.rl-left {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 16px;
 }
 
-.lead-avatar {
-    width: 36px;
-    height: 36px;
+.rl-avatar {
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    background-color: rgba(26, 34, 56, 0.05);
+    background-color: #eff6ff; /* light blue */
+    color: #1e3a8a; /* deep dark blue */
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.rl-info h5 {
+    font-size: 14px;
     font-weight: 600;
-    color: var(--primary-color);
-    font-size: 14px;
+    color: #111827;
+    margin: 0 0 4px 0;
 }
 
-.lead-details h5 {
-    font-size: 14px;
-    color: var(--primary-color);
-    margin-bottom: 2px;
+.rl-info p {
+    font-size: 13px;
+    color: #6b7280;
+    margin: 0;
 }
 
-.lead-details p {
-    font-size: 12px;
-    color: var(--text-muted);
+.rl-badges {
+    display: flex;
+    gap: 8px;
 }
 
-/* Badges */
-.badge {
-    padding: 4px 10px;
-    border-radius: 12px;
+.rl-badge {
+    padding: 2px 10px;
+    border-radius: 9999px;
     font-size: 11px;
-    font-weight: 500;
+    font-weight: 600;
 }
 
-.badge-light-blue { background-color: #E0FBFC; color: #3D5A80; }
-.badge-light-red { background-color: #FFE5D9; color: #D62828; }
-.badge-light-yellow { background-color: #FFF3B0; color: #E09F3E; }
-.badge-light-green { background-color: #D8F3DC; color: #2D6A4F; }
-.badge-light-purple { background-color: #E0C3FC; color: #5A189A; }
+/* Base44 Badges Extracted */
+.b-soguk { background-color: #dbeafe; color: #2563eb; }
+.b-ilik { background-color: #fef08a; color: #d97706; }
+.b-sicak { background-color: #fee2e2; color: #dc2626; }
 
-.badge-hot { background-color: var(--danger); color: white; }
-.badge-warm { background-color: var(--secondary-color); color: white; }
-.badge-cold { background-color: #4361EE; color: white; }
-
-/* Responsive Dashboard */
-@media (max-width: 1200px) {
-    .kpi-container {
-        grid-template-columns: repeat(3, 1fr);
-    }
-    .charts-container {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media (max-width: 768px) {
-    .kpi-container {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    .lower-container {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media (max-width: 480px) {
-    .kpi-container {
-        grid-template-columns: 1fr;
-    }
-    .lead-info-wrapper {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 5px;
-    }
-}
+.b-skorlandi { background-color: #ede9fe; color: #6d28d9; }
+.b-kazanildi { background-color: #dcfce3; color: #16a34a; }
+.b-yeni { background-color: #e0e7ff; color: #4338ca; }

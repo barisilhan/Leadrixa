@@ -1,16 +1,40 @@
-/* Skorlama Page Specific Styles */
+/* Skorlama Specific Layout */
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.page-title h1 {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.table-avatar-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.table-subtext {
+    display: block;
+    font-size: 12px;
+    color: var(--text-muted);
+}
 
 .score-progress-wrapper {
     display: flex;
     align-items: center;
-    gap: 10px;
-    width: 150px;
+    gap: 12px;
+    width: 200px;
 }
 
 .score-progress-bg {
     flex-grow: 1;
-    background-color: #F1F3F5;
-    height: 6px;
+    height: 8px;
+    background-color: var(--bg-color);
     border-radius: 4px;
     overflow: hidden;
 }
@@ -19,56 +43,43 @@
     height: 100%;
     background-color: var(--primary-color);
     border-radius: 4px;
+    transition: width 0.6s ease;
 }
 
 .score-value-text {
     font-size: 13px;
-    font-weight: 500;
-    color: var(--text-main);
-    width: 25px; /* Sabit genişlik hizalama için */
-    text-align: right;
+    font-weight: 600;
+    width: 30px;
 }
 
 .total-score-wrapper {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 700;
-    color: var(--primary-color);
 }
 
 .total-score-wrapper span {
     font-size: 12px;
-    color: #ADB5BD;
+    color: var(--text-muted);
     font-weight: 500;
 }
 
 .btn-score-action {
-    background-color: #F8F9FA;
-    border: 1px solid var(--border-color);
-    color: var(--text-main);
     padding: 6px 12px;
-    border-radius: var(--radius-sm);
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-sm);
     font-size: 12px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s;
-    display: flex;
+    font-weight: 600;
+    color: var(--text-main);
+    display: inline-flex;
     align-items: center;
     gap: 6px;
-}
-
-.btn-score-action i {
-    color: var(--text-muted);
+    transition: all 0.2s;
+    cursor: pointer;
 }
 
 .btn-score-action:hover {
-    background-color: var(--white);
-    border-color: var(--text-muted);
-    box-shadow: var(--shadow-sm);
-}
-
-/* Modifiye edilmiş top barlar için genel spacing (Responsive eklentiler dahil) */
-@media (max-width: 768px) {
-    .score-progress-wrapper {
-        width: 100px;
-    }
+    background-color: var(--primary-color);
+    color: #fff;
+    border-color: var(--primary-color);
 }

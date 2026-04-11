@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nurturing - LeadFlow CRM</title>
+    <title>Kampanya Önerileri - LeadFlow CRM</title>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="iletisim.css">
 </head>
 <body>
     <div class="app-container">
@@ -21,10 +20,10 @@
                 <a href="leadler.html" class="nav-item"><i data-lucide="users"></i> Leadler</a>
                 <a href="skorlama.html" class="nav-item"><i data-lucide="activity"></i> Skorlama</a>
                 <a href="pipeline.html" class="nav-item"><i data-lucide="kanban"></i> Satış Pipeline</a>
-                <a href="iletisim.html" class="nav-item active"><i data-lucide="message-square"></i> Nurturing</a>
+                <a href="iletisim.html" class="nav-item"><i data-lucide="message-square"></i> Nurturing</a>
                 <a href="gorevler.html" class="nav-item"><i data-lucide="check-square"></i> Görevler</a>
                 <a href="raporlama.html" class="nav-item"><i data-lucide="bar-chart-2"></i> Raporlama</a>
-                <a href="kampanya_onerileri.html" class="nav-item"><i data-lucide="lightbulb"></i> Öneriler</a>
+                <a href="kampanya_onerileri.html" class="nav-item active"><i data-lucide="lightbulb"></i> Öneriler</a>
                 <a href="kullanici_yonetimi.html" class="nav-item"><i data-lucide="user-cog"></i> Kullanıcılar</a>
                 <a href="genel_tanimlar.html" class="nav-item"><i data-lucide="settings"></i> Ayarlar</a>
             </nav>
@@ -35,10 +34,9 @@
             <!-- Topbar -->
             <header class="topbar">
                 <div class="topbar-left">
-                    <h2>Lead Nurturing & İletişim</h2>
+                    <h2>Akıllı Kampanya Önerileri</h2>
                 </div>
                 <div class="topbar-right">
-                    <button class="btn btn-outline"><i data-lucide="mail"></i> Kampanya Oluştur</button>
                     <div class="action-icon notification-icon" onclick="openNotifications(event)">
                         <i data-lucide="bell"></i>
                     </div>
@@ -47,14 +45,21 @@
 
             <!-- Page Content -->
             <main class="page-content">
-                <div class="card">
-                    <div class="card-header">
-                        <span class="card-title">İletişime Geçilecek Leadler</span>
-                        <p style="font-size:13px; color:var(--text-muted); margin-top:8px;">Soğuk ve ılık leadler için otomatik nurture önerileri.</p>
+                <div class="leads-grid" style="margin-top:0;">
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="card-title"><i data-lucide="trending-up" style="color:var(--hot-color);"></i> Yüksek Dönüşüm Potansiyeli</span>
+                        </div>
+                        <p style="font-size:13px; color:var(--text-muted); margin-bottom:16px;">Finansal teknoloji sektöründeki sıcak leadlere yönelik özel bir Q3 webinara davet e-postası kampanyası oluşturulması önerilmektedir.</p>
+                        <button class="btn btn-outline" style="width:100%;">Görüntüle</button>
                     </div>
                     
-                    <div class="nurturing-list">
-                        <!-- Data injected by JS loadNurturingPage -->
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="card-title"><i data-lucide="mail" style="color:var(--primary-color);"></i> Kayıp Leadleri Geri Kazanma</span>
+                        </div>
+                        <p style="font-size:13px; color:var(--text-muted); margin-bottom:16px;">Son 6 aydır etkinlik göstermeyen ancak geçmişte bültene abone olmuş kullanıcılara re-engagement (yeniden bağ kurma) mailleri atılabilir.</p>
+                        <button class="btn btn-outline" style="width:100%;">Görüntüle</button>
                     </div>
                 </div>
             </main>
@@ -62,10 +67,6 @@
     </div>
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script src="site.js"></script>
-    <script>
-        $(document).ready(function() { 
-            lucide.createIcons();
-        });
-    </script>
+    <script>$(document).ready(function() { lucide.createIcons(); });</script>
 </body>
 </html>
