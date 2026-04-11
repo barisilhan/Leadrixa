@@ -180,7 +180,7 @@
                 <button class="btn-ghost" onclick="$('#newLeadModal').hide()"><i data-lucide="x"></i></button>
             </div>
             <div class="modal-body">
-                <form id="newLeadForm" style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+                <form id="newLeadForm" style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;" onsubmit="event.preventDefault();">
                     <div style="display: flex; flex-direction: column; gap: 16px;">
                         <div class="form-group" style="margin:0;"><label>Ad Soyad <span style="color:#ef4444">*</span></label><input type="text" id="leadFullName" class="form-control" required></div>
                         <div class="form-group" style="margin:0;"><label>E-posta <span style="color:#ef4444">*</span></label><input type="email" id="leadEmail" class="form-control" required></div>
@@ -239,7 +239,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline" onclick="$('#newLeadModal').hide()">İptal</button>
-                <button type="submit" form="newLeadForm" class="btn btn-primary" style="background-color:#1e3a8a;">Göncelle</button>
+                <button type="button" class="btn btn-primary" style="background-color:#1e3a8a;" onclick="$('#newLeadForm').submit()">Güncelle</button>
             </div>
         </div>
     </div>
